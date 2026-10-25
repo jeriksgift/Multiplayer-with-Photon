@@ -18,6 +18,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] private Button readyButton;
     [SerializeField] private TextMeshProUGUI readyButtonLabel;
     [SerializeField] private Button startButton;
+    [SerializeField] private TextMeshProUGUI roomNameTxt;
 
     [Header("Settings")]
     [SerializeField] private string gameSceneName = "Game";
@@ -73,7 +74,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         SetLocalProps(-1, DataTypes.Team.Blue, -1, false);
-
+        if (roomNameTxt != null)
+        {
+            roomNameTxt.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
+        }
         Refresh();
     }
 

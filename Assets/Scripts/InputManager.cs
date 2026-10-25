@@ -38,7 +38,13 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (escape.WasPressedThisFrame())
+        bool escapePressed = false;
+        if (escape != null && escape.WasPressedThisFrame())
+            escapePressed = true;
+        else if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+            escapePressed = true;
+
+        if (escapePressed)
         {
             LockCursor(!Cursor.visible);
         }

@@ -42,6 +42,10 @@ MonoBehaviour:
   - Damage
   - EnableOrDisableGraphics
   - PlayBloodEffectRpc
+  - RpcUpdateScores
+  - RequestKill
+  - RpcMatchEnded
+  - RpcUpdateTimer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

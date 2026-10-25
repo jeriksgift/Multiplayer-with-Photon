@@ -22,9 +22,15 @@ public class WeaponSystem : MonoBehaviourPun
         {
             if (hit.Value.collider.TryGetComponent<HealthComponent>(out HealthComponent healthComponent))
             {
-                var target = healthComponent.GetComponent<PhotonView>();
-                target.RPC(nameof(HealthComponent.Damage), target.Owner, bulletDamage, hit.Value.point, hit.Value.normal);
-                //healthComponent.Damage(bulletDamage);
+                var targetView = healthComponent.GetComponent<PhotonView>();
+                if (targetView == null || targetView.Owner == null) return;
+
+                // Friendly fire check: only damage enemies
+                var localTeam = RoomManager.GetLocalTeam();
+                var targetTeam = RoomManager.GetTeam(targetView.Owner);
+                if (localTeam == targetTeam) return;
+
+                targetView.RPC(nameof(HealthComponent.Damage), targetView.Owner, bulletDamage, hit.Value.point, hit.Value.normal, PhotonNetwork.LocalPlayer.ActorNumber);
             }
         }
     }

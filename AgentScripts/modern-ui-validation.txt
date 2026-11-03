@@ -1,0 +1,15 @@
+Modern Arena interface
+
+Restyled: menu, room/team selection, loading, both team HUDs, match results.
+Style: navy panels, cyan primary actions, blue/red team accents, shared typography, character artwork rendered from project prefabs.
+
+Play mode validation passed:
+- Slot selection, ready action and host deployment availability in an offline room.
+- Live score, timer and health updates on the red variant.
+- Both team result totals and player kill/damage rows.
+- 1920x1080 visual review for all five screens.
+- 1440x1080 visual review and viewport bounds for menu (4 controls) and room (11 controls).
+- Both player variants retain UI references and Photon observables.
+
+Previews: Assets/Screenshots/ModernUI-*.png
+Builder: AgentScripts/ModernUI.cs (Assets, Lobby, HUD).

@@ -1,0 +1,5 @@
+frames=11344->11957, distance=1.36, flash=True, fired=True
+WALK frame=11470 pos=(-7.114, 0.000, -0.945) speed=3.78 ground=True animator=True state=1116626609 RH=(-7.009, 1.265, -1.085) target=(-7.009, 1.265, -1.085) LH=(-6.764, 1.315, -1.050) target=(-6.764, 1.315, -1.050) cam=True input=Player
+RUN frame=11532 pos=(-4.314, 0.000, -0.945) speed=7.81 ground=True animator=True state=1116626609 RH=(-4.209, 1.265, -1.085) target=(-4.209, 1.265, -1.085) LH=(-3.964, 1.315, -1.050) target=(-3.964, 1.315, -1.050) cam=True input=Player
+JUMP frame=11644 pos=(-4.154, 1.249, -0.945) speed=0.02 ground=False animator=True state=-1774406698 RH=(-4.049, 2.514, -1.085) target=(-4.049, 2.514, -1.085) LH=(-3.804, 2.564, -1.050) target=(-3.804, 2.564, -1.050) cam=True input=Player
+FINAL frame=11957 pos=(-4.154, 0.000, -0.945) speed=0.00 ground=True animator=True state=1116626609 RH=(-4.049, 1.265, -1.085) target=(-4.049, 1.265, -1.085) LH=(-3.804, 1.315, -1.050) target=(-3.804, 1.315, -1.050) cam=True input=Player

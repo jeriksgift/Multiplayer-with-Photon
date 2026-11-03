@@ -1,0 +1,2 @@
+PASS: 111 arena meshes covered, 2730 perimeter samples blocked at ground, jump and roof heights; no barrier renderers=True. Default/Ground ignored=False
+PASS: dynamic player-size capsules blocked on all four sides above visible wall height at 20m/s outward plus 8m/s jump velocity.

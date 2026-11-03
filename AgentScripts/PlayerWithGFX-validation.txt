@@ -1,0 +1,1 @@
+PASS: humanoid avatar, 52 bone mappings, textured skin, rifle meshes/materials, no missing scripts, no old gun/eye, two-hand IK, weapon muzzle, owner-only first-person view, Photon presentation observer. Edit-pose hand errors: right=0.0000m, left=0.0000m.

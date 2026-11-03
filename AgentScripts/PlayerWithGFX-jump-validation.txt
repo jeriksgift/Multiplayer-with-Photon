@@ -1,0 +1,1 @@
+Peak=1.717m; airtime=0.784s; landed=True; final Y=-0.159; frames=18862->19110; right hand grip error=0.0000m.

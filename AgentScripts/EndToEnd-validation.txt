@@ -1,0 +1,13 @@
+End-to-end verification 2026-11-03 15:09:55Z
+ONLINE: state=Disconnected, inLobby=False
+PASS: lobby fields, invalid inputs, normalization, room create, slots, switching teams, ready/cancel, occupied slots and both-team start gates (offline simulated opponent).
+PASS: actual Start button, network scene loader, automatic player spawn, HUD, loading overlay dismissal and running match timer.
+PASS: damage, lethal damage RPC, death, two-second owner respawn, health restore, kill credit, score HUD, real score-target match end and results.
+PASS: actual results Return button, leave room, lobby menu restoration, loading dismissal and transition cleanup.
+PASS: second room after match, cleared team/ready properties, actual Leave button, lobby quit dialog and Cancel. Quit deliberately not invoked in shared Editor.
+PASS: 3 Resources prefabs and both build scenes have no missing scripts; Lobby/Game build scene order correct.
+PASS: lobby fields, invalid inputs, normalization, room create, slots, switching teams, ready/cancel, occupied slots and both-team start gates (offline simulated opponent).
+PASS: actual Start button, network scene loader, automatic player spawn, HUD, loading overlay dismissal and running match timer.
+PASS: real timer expiry produces Draw; gameplay input blocked under results.
+PASS: connection failure dismisses loading and restores lobby with reconnect guidance.
+BUILD: Succeeded; errors=0; warnings=13; size=242070630; time=00:00:18.3666227

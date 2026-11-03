@@ -1,0 +1,5 @@
+skin bounds Center: (0.33, 0.88, 0.25), Extents: (0.78, 1.01, 0.72) baked Center: (-0.25, -0.33, -0.05), Extents: (0.72, 0.78, 1.01)
+SoldierVisual position=(0.00, 0.00, 0.00) rotation=(0.00000, 0.00000, 0.00000, 1.00000)
+tripo::Root position=(0.00, 0.91, 0.03) rotation=(0.30111, 0.66078, 0.62308, -0.29063)
+tripo::Head_1 position=(-0.01, 1.64, 0.01) rotation=(-0.02754, 0.87062, 0.06132, -0.48735)
+bone_26 position=(0.14, 1.27, 0.11) rotation=(0.11650, -0.01976, -0.99285, -0.01678)

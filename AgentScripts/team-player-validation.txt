@@ -1,0 +1,3 @@
+Red: walk=1.36, sprint=2.80, jump=0.96; input, camera, shooting, death, owner respawn, remote atomic respawn and stale packet rejection passed.
+Blue: walk=1.44, sprint=2.72, jump=1.06; input, camera, shooting, death, owner respawn, remote atomic respawn and stale packet rejection passed.
+Frames advanced 24019 -> 25845

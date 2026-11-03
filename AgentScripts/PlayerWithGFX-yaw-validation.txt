@@ -1,0 +1,1 @@
+Original torque-induced yaw=116.883deg; fixed torque-induced yaw=0.000deg; yaw drift after moving/stopping=0.000deg; mouse-look yaw=11.527deg; angular velocity=(0.00, 0.00, 0.00).

@@ -1,0 +1,158 @@
+Canvas active=True size=(1920.00, 1080.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(960.00, 540.00) [RectTransform,Canvas,CanvasScaler,GraphicRaycaster]
+Canvas/Menu active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,VerticalLayoutGroup]
+Canvas/Menu/NickNameInput active=True size=(850.00, 100.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(960.00, -335.00) [RectTransform,CanvasRenderer,Image,TMP_InputField]
+Canvas/Menu/NickNameInput/Text Area active=True size=(-20.00, -13.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, -0.50) [RectTransform,RectMask2D]
+Canvas/Menu/NickNameInput/Text Area/Placeholder active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI,LayoutElement] TEXT=Enter your nickname...
+Canvas/Menu/NickNameInput/Text Area/Text active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=​
+Canvas/Menu/RoomNameInput active=True size=(850.00, 100.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(960.00, -485.00) [RectTransform,CanvasRenderer,Image,TMP_InputField]
+Canvas/Menu/RoomNameInput/Text Area active=True size=(-20.00, -13.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, -0.50) [RectTransform,RectMask2D]
+Canvas/Menu/RoomNameInput/Text Area/Placeholder active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI,LayoutElement] TEXT=Enter roomname...
+Canvas/Menu/RoomNameInput/Text Area/Text active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=​
+Canvas/Menu/CreateJoinRoomBtn active=True size=(500.00, 80.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(960.00, -625.00) [RectTransform,CanvasRenderer,Image,Button]
+Canvas/Menu/CreateJoinRoomBtn/Text (TMP) active=True size=(-20.00, -20.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Create or Join Room
+Canvas/Menu/ExitBtn active=True size=(200.00, 80.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(960.00, -755.00) [RectTransform,CanvasRenderer,Image,Button]
+Canvas/Menu/ExitBtn/Text (TMP) active=True size=(-20.00, -20.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Exit
+Canvas/Room active=False size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+Canvas/Room/ExitBtn active=True size=(200.00, 80.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,Button]
+Canvas/Room/ExitBtn/Text (TMP) active=True size=(-20.00, -20.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Exit
+Canvas/Room/RoomNameText active=True size=(400.00, 80.00) anchors=(0.50, 1.00):(0.50, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Room Name
+Canvas/Room/GridLayout active=True size=(0.00, 0.00) anchors=(0.10, 0.20):(0.90, 0.80) pos=(0.00, 0.00) [RectTransform,GridLayoutGroup,CanvasRenderer,Image,GridChildCellSizeSetter]
+Canvas/Room/GridLayout/Slot active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(389.00, -88.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (1) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(1147.00, -88.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (1)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (2) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(389.00, -245.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (2)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (3) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(1147.00, -245.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (3)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (4) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(389.00, -402.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (4)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (5) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(1147.00, -402.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (5)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (6) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(389.00, -559.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (6)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/GridLayout/Slot (7) active=True size=(738.00, 137.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(1147.00, -559.50) [RectTransform,CanvasRenderer,Image,Button,RoomSlot]
+Canvas/Room/GridLayout/Slot (7)/PlayerName active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player 1
+Canvas/Room/ReadyBtn active=True size=(300.00, 70.00) anchors=(0.50, 0.00):(0.50, 0.00) pos=(-165.00, 45.00) [RectTransform,CanvasRenderer,Image,Button]
+Canvas/Room/ReadyBtn/Label active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Ready
+Canvas/Room/StartBtn active=True size=(300.00, 70.00) anchors=(0.50, 0.00):(0.50, 0.00) pos=(165.00, 45.00) [RectTransform,CanvasRenderer,Image,Button]
+Canvas/Room/StartBtn/Label active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Start
+LoadingManager/Canvas active=True size=(1920.00, 1080.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(960.00, 540.00) [RectTransform,Canvas,CanvasScaler,GraphicRaycaster]
+LoadingManager/Canvas/LoadingPanel active=False size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+LoadingManager/Canvas/LoadingPanel/VerticalLayout active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,HorizontalLayoutGroup]
+LoadingManager/Canvas/LoadingPanel/VerticalLayout/Text (TMP) active=True size=(421.64, 50.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(925.00, -540.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Connecting...
+LoadingManager/Canvas/LoadingPanel/VerticalLayout/LoadingImage active=True size=(50.00, 50.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(1180.82, -540.00) [RectTransform,CanvasRenderer,Image,LayoutElement]
+IngameDebugConsole active=True size=(1066.67, 600.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(960.00, 540.00) [RectTransform,Canvas,CanvasScaler,GraphicRaycaster,DebugLogManager,EventSystemHandler]
+IngameDebugConsole/DebugLogWindow active=True size=(0.00, 0.00) anchors=(0.00, 0.50):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,CanvasGroup]
+IngameDebugConsole/DebugLogWindow/Buttons active=True size=(0.00, 36.00) anchors=(0.00, 1.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,HorizontalLayoutGroup]
+IngameDebugConsole/DebugLogWindow/Buttons/ClearButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(68.17, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/ClearButton/Image active=True size=(0.00, 0.00) anchors=(0.15, 0.12):(0.85, 0.88) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/CollapseButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(204.50, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/CollapseButton/Image active=True size=(0.00, 0.00) anchors=(0.15, 0.12):(0.85, 0.88) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop active=True size=(248.67, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(397.00, -18.00) [RectTransform,CanvasRenderer,Image,LayoutElement]
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop/Searchbar active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,TMP_InputField]
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop/Searchbar/Icon active=True size=(25.00, -6.00) anchors=(0.00, 0.00):(0.00, 1.00) pos=(2.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop/Searchbar/Text Area active=True size=(-32.00, -13.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(14.00, -0.50) [RectTransform,RectMask2D]
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop/Searchbar/Text Area/Placeholder active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Search...
+IngameDebugConsole/DebugLogWindow/Buttons/SearchbarSlotTop/Searchbar/Text Area/Text active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=​
+IngameDebugConsole/DebugLogWindow/Buttons/FilterLogButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(589.50, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterLogButton/Image active=True size=(-2.00, -7.00) anchors=(0.00, 0.00):(0.55, 1.00) pos=(1.00, 0.50) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterLogButton/LogCount active=True size=(-2.00, -2.00) anchors=(0.55, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+IngameDebugConsole/DebugLogWindow/Buttons/FilterWarningButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(725.83, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterWarningButton/Image active=True size=(-2.00, -7.00) anchors=(0.00, 0.00):(0.55, 1.00) pos=(1.00, 0.50) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterWarningButton/WarningCount active=True size=(-2.00, -2.00) anchors=(0.55, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+IngameDebugConsole/DebugLogWindow/Buttons/FilterErrorButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(862.17, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterErrorButton/Image active=True size=(-2.00, -7.00) anchors=(0.00, 0.00):(0.55, 1.00) pos=(1.00, 0.50) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Buttons/FilterErrorButton/ErrorCount active=True size=(-2.00, -2.00) anchors=(0.55, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+IngameDebugConsole/DebugLogWindow/Buttons/HideButton active=True size=(136.33, 36.00) anchors=(0.00, 1.00):(0.00, 1.00) pos=(998.50, -18.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Buttons/HideButton/Image active=True size=(0.00, 0.00) anchors=(0.15, 0.12):(0.85, 0.88) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/SearchbarSlotBottom active=False size=(0.00, 36.00) anchors=(0.00, 1.00):(1.00, 1.00) pos=(0.00, -36.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Debugs active=True size=(0.00, -72.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,ScrollRect,CanvasRenderer,Image,DebugsOnScrollListener]
+IngameDebugConsole/DebugLogWindow/Debugs/Viewport active=True size=(-28.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,RectMask2D]
+IngameDebugConsole/DebugLogWindow/Debugs/Viewport/LogsContainer active=True size=(0.00, 50.00) anchors=(0.00, 1.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,DebugLogRecycledListView]
+IngameDebugConsole/DebugLogWindow/Debugs/Viewport/SnapToBottom active=False size=(42.00, 42.00) anchors=(0.50, 0.00):(0.50, 0.00) pos=(0.00, 8.00) [RectTransform,CanvasRenderer,Image,Button]
+IngameDebugConsole/DebugLogWindow/Debugs/Viewport/SnapToBottom/Image active=True size=(0.00, 0.00) anchors=(0.20, 0.20):(0.80, 0.80) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/Debugs/Scrollbar Vertical active=True size=(28.00, 0.00) anchors=(1.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,Scrollbar,EventTrigger]
+IngameDebugConsole/DebugLogWindow/Debugs/Scrollbar Vertical/Sliding Area active=True size=(-20.00, -20.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform]
+IngameDebugConsole/DebugLogWindow/Debugs/Scrollbar Vertical/Sliding Area/Handle active=True size=(20.00, 20.00) anchors=(0.00, 0.00):(1.00, 0.78) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogWindow/CommandSuggestions active=True size=(0.00, 5000.00) anchors=(0.00, 0.00):(1.00, 0.00) pos=(0.00, 36.00) [RectTransform,HorizontalLayoutGroup]
+IngameDebugConsole/DebugLogWindow/CommandSuggestions/CommandSuggestionsContainer active=False size=(24.00, 24.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,VerticalLayoutGroup]
+IngameDebugConsole/DebugLogWindow/CommandInputField active=True size=(-64.00, 36.00) anchors=(0.00, 0.00):(1.00, 0.00) pos=(-32.00, 0.00) [RectTransform,CanvasRenderer,Image,CommandInputField]
+IngameDebugConsole/DebugLogWindow/CommandInputField/Text Area active=True size=(-20.00, -16.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,RectMask2D]
+IngameDebugConsole/DebugLogWindow/CommandInputField/Text Area/Placeholder active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=(type help for list of commands)
+IngameDebugConsole/DebugLogWindow/CommandInputField/Text Area/Text active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=​
+IngameDebugConsole/DebugLogWindow/DebugLogWindowResize active=True size=(64.00, 36.00) anchors=(1.00, 0.00):(1.00, 0.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,DebugLogResizeListener,CopyLogsOnResizeButtonClick]
+IngameDebugConsole/DebugLogWindow/DebugLogWindowResize/Image active=True size=(0.00, 0.00) anchors=(0.15, 0.12):(0.85, 0.88) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogPopup active=True size=(72.00, 72.00) anchors=(0.50, 0.50):(0.50, 0.50) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image,DebugLogPopup,CanvasGroup]
+IngameDebugConsole/DebugLogPopup/InfoImage active=True size=(-1.00, 0.00) anchors=(0.00, 0.68):(0.45, 0.98) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogPopup/WarningImage active=True size=(-1.00, 0.00) anchors=(0.00, 0.35):(0.45, 0.65) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogPopup/ErrorImage active=True size=(-1.00, 0.00) anchors=(0.00, 0.03):(0.45, 0.33) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+IngameDebugConsole/DebugLogPopup/NewInfoCount active=True size=(-2.00, 0.00) anchors=(0.45, 0.68):(1.00, 0.98) pos=(-1.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+IngameDebugConsole/DebugLogPopup/NewWarningCount active=True size=(-2.00, 0.00) anchors=(0.45, 0.35):(1.00, 0.65) pos=(-1.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+IngameDebugConsole/DebugLogPopup/NewErrorCount active=True size=(-2.00, 0.00) anchors=(0.45, 0.03):(1.00, 0.33) pos=(-1.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+PLAYER PREFAB
+PlayerWithGFX/Canvas active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(0.00, 0.00) [RectTransform,Canvas,CanvasScaler,GraphicRaycaster]
+PlayerWithGFX/Canvas/PlayerHUD active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform]
+PlayerWithGFX/Canvas/PlayerHUD/RoomName active=True size=(-10.00, 50.00) anchors=(0.00, 1.00):(0.30, 1.00) pos=(10.00, -10.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=RoomName
+PlayerWithGFX/Canvas/PlayerHUD/Image active=True size=(10.00, 10.00) anchors=(0.50, 0.50):(0.50, 0.50) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/KillCount active=True size=(200.00, 80.00) anchors=(0.50, 1.00):(0.50, 1.00) pos=(0.00, -10.00) [RectTransform,HorizontalLayoutGroup]
+PlayerWithGFX/Canvas/PlayerHUD/KillCount/Bg active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/KillCount/Bg/BlueScore active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+PlayerWithGFX/Canvas/PlayerHUD/KillCount/Bg (1) active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(0.00, 0.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/KillCount/Bg (1)/RedScore active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=0
+PlayerWithGFX/Canvas/PlayerHUD/HealthBarBG active=True size=(200.00, 20.00) anchors=(0.50, 0.00):(0.50, 0.00) pos=(0.00, 10.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/HealthBarBG/HealthBarFill active=True size=(-4.00, -4.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/TimerBG active=True size=(150.00, 50.00) anchors=(1.00, 1.00):(1.00, 1.00) pos=(-20.00, -15.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/TimerBG/Text (TMP) active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=20:00
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel active=False size=(0.00, 0.00) anchors=(0.10, 0.10):(0.90, 0.85) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/WinnerText active=True size=(-20.00, -10.00) anchors=(0.00, 0.80):(1.00, 1.00) pos=(0.00, -5.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Blue Team Wins!
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/ExitToLobbyButton active=True size=(200.00, 40.00) anchors=(0.50, 0.00):(0.50, 0.00) pos=(0.00, 15.00) [RectTransform,CanvasRenderer,Image,Button]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/ExitToLobbyButton/Text active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Exit to Lobby
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel active=True size=(-60.00, 0.00) anchors=(0.00, 0.20):(0.50, 0.80) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/EndScoreText active=True size=(0.00, 73.00) anchors=(0.00, 1.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Blue: 0
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/TableTitle active=True size=(-20.00, 0.00) anchors=(0.00, 0.80):(1.00, 0.90) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/TableTitle/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Name
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/TableTitle/Kills active=True size=(60.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Kills
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/TableTitle/Kills (1) active=True size=(140.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Damage
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players active=True size=(-20.00, -10.00) anchors=(0.00, 0.00):(1.00, 0.80) pos=(0.00, 5.00) [RectTransform,CanvasRenderer,Image,VerticalLayoutGroup]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -94.70) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1) active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -189.40) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1) active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -284.10) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/BlueTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel active=True size=(-60.00, 0.00) anchors=(0.50, 0.20):(1.00, 0.80) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/EndScoreText (1) active=True size=(0.00, 73.00) anchors=(0.00, 1.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Red: 0
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/TableTitle (1) active=True size=(-20.00, 0.00) anchors=(0.00, 0.80):(1.00, 0.90) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/TableTitle (1)/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Name
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/TableTitle (1)/Kills active=True size=(60.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Kills
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/TableTitle (1)/Kills (1) active=True size=(140.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Damage
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players active=True size=(-20.00, -10.00) anchors=(0.00, 0.00):(1.00, 0.80) pos=(0.00, 5.00) [RectTransform,CanvasRenderer,Image,VerticalLayoutGroup]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -94.70) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1) active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -189.40) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Even (1)/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1) active=True size=(688.00, 94.70) anchors=(0.00, 1.00):(0.00, 1.00) pos=(0.00, -284.10) [RectTransform,CanvasRenderer,Image]
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Name active=True size=(350.00, 50.00) anchors=(0.00, 0.50):(0.00, 0.50) pos=(10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Jeriks
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Kills active=True size=(50.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-130.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40
+PlayerWithGFX/Canvas/PlayerHUD/MatchEndPanel/RedTeamPanel/Players/Slot_MatchEndPanel Variant_Odd (1)/Kills (1) active=True size=(120.00, 50.00) anchors=(1.00, 0.50):(1.00, 0.50) pos=(-10.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=40000
+PlayerWithGFX/WorldNameCanvas active=True size=(200.00, 50.00) anchors=(0.50, 0.50):(0.50, 0.50) pos=(0.00, 2.20) [RectTransform,Canvas]
+PlayerWithGFX/WorldNameCanvas/NameText active=True size=(0.00, 0.00) anchors=(0.00, 0.00):(1.00, 1.00) pos=(0.00, 0.00) [RectTransform,CanvasRenderer,TextMeshProUGUI] TEXT=Player

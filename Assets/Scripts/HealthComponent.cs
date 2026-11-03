@@ -13,7 +13,6 @@ public class HealthComponent : MonoBehaviour
     private bool isDead;
     public bool IsDead => isDead;
     public int LifeRevision { get; private set; }
-    private int lastShooterActorNumber = -1;
 
     private PhotonView photonView;
 
@@ -46,14 +45,13 @@ public class HealthComponent : MonoBehaviour
     public void Damage(float damage, Vector3 hitPoint, Vector3 hitNormal, int shooterActorNumber)
     {
         if (!photonView.IsMine || isDead || damage <= 0f) return;
-        lastShooterActorNumber = shooterActorNumber;
-        health -= damage;
+        float damageDealt = Mathf.Min(damage, health);
+        health = Mathf.Max(0f, health - damageDealt);
 
-        // Track damage dealt (send to master)
+        // Report the hit and its kill together before the host can finalize results.
         if (shooterActorNumber != -1 && shooterActorNumber != photonView.Owner.ActorNumber)
         {
-            var options = new Photon.Realtime.RaiseEventOptions { Receivers = Photon.Realtime.ReceiverGroup.MasterClient };
-            Photon.Pun.PhotonNetwork.RaiseEvent(2, new object[] { shooterActorNumber, damage }, options, ExitGames.Client.Photon.SendOptions.SendReliable);
+            global::GameManager.RecordHit(shooterActorNumber, damageDealt, health <= 0f);
         }
         health = Mathf.Clamp(health, 0, maxHealth);
         HealthChanged?.Invoke(health / maxHealth);
@@ -79,12 +77,6 @@ public class HealthComponent : MonoBehaviour
     {
         Debug.Log("Dead");
         if (!photonView.IsMine) return;
-
-        // Notify killer for score tracking
-        if (lastShooterActorNumber != -1 && lastShooterActorNumber != photonView.Owner.ActorNumber)
-        {
-            global::GameManager.AddKill(lastShooterActorNumber);
-        }
 
         photonView.RPC(nameof(SetLifeStateRpc), RpcTarget.All, LifeRevision + 1, true, transform.position, transform.rotation);
         StartCoroutine(RespawnPlayer());
@@ -132,7 +124,6 @@ public class HealthComponent : MonoBehaviour
         if (!dead)
         {
             health = maxHealth;
-            lastShooterActorNumber = -1;
             HealthChanged?.Invoke(1f);
         }
         EnableOrDisableGraphics(!dead);

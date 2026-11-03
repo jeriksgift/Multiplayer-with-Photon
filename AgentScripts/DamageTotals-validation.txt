@@ -1,0 +1,4 @@
+PASS: Red winner, final hit changes 980 to 1000 before match completion; 10 kills and results label 1000.
+PASS: Blue winner, 10 kills with 30-damage hits count 1000 actual health removed; overkill excluded.
+PASS: simulated remote combined damage/kill event records final damage before ending match; host and synchronized result snapshots agree.
+PASS: fractional damage serialized with invariant decimal separator.

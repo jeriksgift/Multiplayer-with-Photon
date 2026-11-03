@@ -1,6 +1,6 @@
 .results-screen {
     flex-grow: 1;
-    background-color: rgba(0, 0, 0, 0.94);
+    background-color: rgb(12, 12, 14);
     color: white;
     padding: 44px 64px 36px;
     -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf?fileID=12800000&guid=287a5872154fc5043a8cb796be0c4cc2&type=3#Mono");
@@ -9,11 +9,11 @@
 .results-header, .results-footer, .results-columns, .score-heading, .table-header, .result-row { flex-direction: row; }
 .results-header, .results-footer, .score-heading { justify-content: space-between; align-items: center; }
 .results-header { padding-bottom: 22px; border-bottom-width: 1px; border-bottom-color: rgb(68, 68, 64); }
-.results-eyebrow { font-size: 20px; -unity-font-style: bold; }
-.results-room { font-size: 20px; max-width: 60%; overflow: hidden; text-overflow: ellipsis; }
+.results-eyebrow { font-size: 24px; -unity-font-style: bold; }
+.results-room { font-size: 24px; max-width: 60%; overflow: hidden; text-overflow: ellipsis; }
 .results-content { flex-grow: 1; min-height: 0; padding-top: 32px; }
 .results-title { font-size: 64px; -unity-font-style: bold; }
-.results-screen .results-subtitle { font-size: 22px; margin-top: 12px; margin-bottom: 30px; white-space: normal; }
+.results-screen .results-subtitle { font-size: 26px; margin-top: 12px; margin-bottom: 30px; white-space: normal; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); }
 .results-scroll { flex-grow: 1; min-height: 0; }
 .results-columns { padding-bottom: 12px; }
 .result-card {
@@ -30,15 +30,15 @@
 .score-heading { padding-bottom: 22px; border-bottom-width: 2px; }
 .blue-card .score-heading { border-bottom-color: rgb(156, 177, 191); }
 .red-card .score-heading { border-bottom-color: rgb(204, 150, 142); }
-.team-title { font-size: 28px; -unity-font-style: bold; }
-.results-screen .team-status { font-size: 18px; margin-top: 10px; }
+.team-title { font-size: 32px; -unity-font-style: bold; }
+.results-screen .team-status { font-size: 22px; margin-top: 10px; -unity-font-style: bold; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); }
 .final-score { font-size: 64px; -unity-font-style: bold; }
-.table-header { padding: 20px 12px 14px; font-size: 18px; }
+.table-header { padding: 20px 12px 14px; font-size: 22px; -unity-font-style: bold; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); }
 .player-name { flex-grow: 1; flex-basis: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; -unity-text-align: middle-left; }
-.stat-value { width: 96px; flex-shrink: 0; -unity-text-align: middle-right; }
-.result-row { align-items: center; padding: 16px 12px; margin-bottom: 8px; background-color: rgb(31, 31, 30); font-size: 22px; border-left-width: 3px; border-left-color: transparent; }
+.stat-value { width: 112px; flex-shrink: 0; -unity-text-align: middle-right; }
+.result-row { align-items: center; padding: 16px 12px; margin-bottom: 8px; background-color: rgb(31, 31, 30); font-size: 26px; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); border-left-width: 3px; border-left-color: transparent; }
 .result-local { border-left-color: white; background-color: rgb(45, 45, 40); }
-.results-screen .empty-stats { font-size: 20px; padding: 24px 12px; white-space: normal; }
+.results-screen .empty-stats { font-size: 24px; padding: 24px 12px; white-space: normal; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); }
 .results-footer { padding-top: 26px; }
 .results-brand { font-size: 24px; }
 .return-button {

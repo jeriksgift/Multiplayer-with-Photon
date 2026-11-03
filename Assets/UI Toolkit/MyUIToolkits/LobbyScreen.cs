@@ -12,6 +12,7 @@ public sealed class LobbyScreen : MonoBehaviour
     private TextField nicknameField;
     private TextField roomField;
     private Button enterButton;
+    private Button exitButton;
     private Label dateTimeLabel;
     private Label statusLabel;
     private VisualElement root;
@@ -25,9 +26,10 @@ public sealed class LobbyScreen : MonoBehaviour
         nicknameField = root.Q<TextField>("NickNameTextField");
         roomField = root.Q<TextField>("RoomNameTextField");
         enterButton = root.Q<Button>("CreateJoinRoomButton");
+        exitButton = root.Q<Button>("ExitGameButton");
         dateTimeLabel = root.Q<Label>("DateTimeLabel");
         statusLabel = root.Q<Label>("LobbyStatusLabel");
-        if (!lobbyManager || nicknameField == null || roomField == null || enterButton == null || dateTimeLabel == null || statusLabel == null)
+        if (!lobbyManager || nicknameField == null || roomField == null || enterButton == null || exitButton == null || dateTimeLabel == null || statusLabel == null)
         {
             Debug.LogError("LobbyScreen is missing its manager or a named element in lobby.uxml.", this);
             return;
@@ -40,6 +42,7 @@ public sealed class LobbyScreen : MonoBehaviour
         nicknameField.RegisterValueChangedCallback(OnNicknameChanged);
         roomField.RegisterValueChangedCallback(OnRoomChanged);
         enterButton.clicked += Submit;
+        exitButton.clicked += OpenExit;
         root.RegisterCallback<KeyDownEvent>(OnKeyDown);
         lobbyManager.StatusChanged += ShowStatus;
         ShowStatus(lobbyManager.StatusMessage);
@@ -62,6 +65,7 @@ public sealed class LobbyScreen : MonoBehaviour
             roomField.UnregisterValueChangedCallback(OnRoomChanged);
         }
         if (enterButton != null) enterButton.clicked -= Submit;
+        if (exitButton != null) exitButton.clicked -= OpenExit;
         root?.UnregisterCallback<KeyDownEvent>(OnKeyDown);
         if (lobbyManager) lobbyManager.StatusChanged -= ShowStatus;
     }
@@ -81,6 +85,7 @@ public sealed class LobbyScreen : MonoBehaviour
     private void OnKeyDown(KeyDownEvent evt)
     {
         if (evt.keyCode != KeyCode.Return && evt.keyCode != KeyCode.KeypadEnter) return;
+        if (evt.target is VisualElement target && (target == exitButton || exitButton.Contains(target))) return;
         Submit();
         evt.StopPropagation();
     }
@@ -97,6 +102,12 @@ public sealed class LobbyScreen : MonoBehaviour
         if (lobbyManager.TryEnterRoom(player, room)) return;
         if (player.Length < 2) nicknameField.Focus();
         else if (string.IsNullOrWhiteSpace(room)) roomField.Focus();
+    }
+
+    private void OpenExit()
+    {
+        var menu = FindAnyObjectByType<ToysGameUI>();
+        if (menu) menu.ShowExit();
     }
 
     private void ShowStatus(string message)

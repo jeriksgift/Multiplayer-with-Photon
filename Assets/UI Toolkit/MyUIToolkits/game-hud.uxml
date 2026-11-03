@@ -20,7 +20,7 @@
                 <ui:VisualElement class="health-track"><ui:VisualElement name="HealthFill" class="health-fill"/></ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="hud-panel ammo-panel">
-                <ui:Label text="AMMO / UNLIMITED RESERVE" class="hud-caption"/>
+                <ui:VisualElement class="ammo-heading"><ui:Label text="AMMO" class="hud-caption"/><ui:Label text="UNLIMITED RESERVE" class="ammo-reserve"/></ui:VisualElement>
                 <ui:Label name="AmmoValue" text="07 / 07" class="ammo-value"/>
                 <ui:Label name="AmmoStatus" text="R / RELOAD" class="hud-caption"/>
             </ui:VisualElement>

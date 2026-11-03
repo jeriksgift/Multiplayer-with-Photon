@@ -29,3 +29,24 @@
 .lobby-status--hidden {
     display: none;
 }
+
+.lobby-exit-button {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    height: 60px;
+    padding: 0 32px;
+    margin: 0;
+    font-size: 28px;
+    color: white;
+    background-color: rgb(34, 34, 34);
+    -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf?fileID=12800000&guid=287a5872154fc5043a8cb796be0c4cc2&type=3#Mono");
+    border-width: 3px;
+    border-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 10px;
+}
+
+.lobby-exit-button:hover, .lobby-exit-button:focus { background-color: rgb(60, 60, 53); }

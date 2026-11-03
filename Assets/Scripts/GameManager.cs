@@ -84,9 +84,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
             var data = (object[])photonEvent.CustomData;
             int shooterActorNumber = (int)data[0];
             float damage = (float)data[1];
-            if (!playerDamage.ContainsKey(shooterActorNumber))
-                playerDamage[shooterActorNumber] = 0f;
-            playerDamage[shooterActorNumber] += damage;
+            bool killed = data.Length > 2 && data[2] is bool lethal && lethal;
+            ProcessHit(shooterActorNumber, damage, killed);
         }
     }
 
@@ -211,7 +210,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
             var team = RoomManager.GetTeam(player);
             int teamInt = (team == DataTypes.Team.Blue) ? 0 : 1;
             if (statsBuilder.Length > 0) statsBuilder.Append(";");
-            statsBuilder.Append(actor + ":" + teamInt + ":" + kills + ":" + dmg);
+            statsBuilder.Append(actor + ":" + teamInt + ":" + kills + ":" + dmg.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
         var props = new ExitGames.Client.Photon.Hashtable();
@@ -219,22 +218,29 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         props["winner"] = winner;
         props["blueKills"] = blueKills;
         props["redKills"] = redKills;
-        props["playerStats"] = statsBuilder.ToString();
+        string stats = statsBuilder.ToString();
+        props["playerStats"] = stats;
         PhotonNetwork.CurrentRoom.SetCustomProperties(props);
 
-        // Build stats string for local call
-        var statsBuilder2 = new System.Text.StringBuilder();
-        foreach (var player in PhotonNetwork.PlayerList)
-        {
-            int actor = player.ActorNumber;
-            int kills = playerKills.ContainsKey(actor) ? playerKills[actor] : 0;
-            float dmg = playerDamage.ContainsKey(actor) ? playerDamage[actor] : 0f;
-            var team = RoomManager.GetTeam(player);
-            int teamInt = (team == DataTypes.Team.Blue) ? 0 : 1;
-            if (statsBuilder2.Length > 0) statsBuilder2.Append(";");
-            statsBuilder2.Append(actor + ":" + teamInt + ":" + kills + ":" + dmg);
-        }
-        OnMatchEnded?.Invoke(winner, statsBuilder2.ToString());
+        OnMatchEnded?.Invoke(winner, stats);
+    }
+
+    private void ProcessHit(int shooterActorNumber, float damage, bool killed)
+    {
+        if (matchEnded || damage <= 0f) return;
+        if (!playerDamage.ContainsKey(shooterActorNumber)) playerDamage[shooterActorNumber] = 0f;
+        playerDamage[shooterActorNumber] += damage;
+        if (killed) ProcessKill(shooterActorNumber);
+    }
+
+    public static void RecordHit(int shooterActorNumber, float damage, bool killed)
+    {
+        if (Instance == null || Instance.matchEnded) return;
+        if (PhotonNetwork.IsMasterClient)
+            Instance.ProcessHit(shooterActorNumber, damage, killed);
+        else
+            PhotonNetwork.RaiseEvent(DAMAGE_EVENT, new object[] { shooterActorNumber, damage, killed },
+                new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient }, SendOptions.SendReliable);
     }
 
     private void ProcessKill(int killerActorNumber)

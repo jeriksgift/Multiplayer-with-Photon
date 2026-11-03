@@ -10,6 +10,7 @@ public class WeaponSystem : MonoBehaviourPun
     private void Update()
     {
         if (!photonView.IsMine) return;
+        if (InputManager.Instance && InputManager.Instance.IsGameplayBlocked) return;
 
         if (InputManager.Instance.fire.WasPressedThisFrame()) Fire();
     }

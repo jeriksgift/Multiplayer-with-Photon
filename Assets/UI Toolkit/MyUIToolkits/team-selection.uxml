@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="team-selection.uss"/>
+    <ui:VisualElement name="TeamPanel" class="team-screen">
+        <ui:VisualElement class="team-header">
+            <ui:VisualElement><ui:Label name="RoomName" text="Room" class="room-name"/><ui:Label name="PlayerCount" text="0 / 8 PLAYERS" class="room-meta"/></ui:VisualElement>
+            <ui:Button name="LeaveButton" text="Leave Room" class="team-button leave-button"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="team-content">
+            <ui:Label text="Choose your team" class="section-title"/>
+            <ui:VisualElement class="team-columns">
+                <ui:VisualElement class="team-column blue-column">
+                    <ui:VisualElement class="team-heading"><ui:Label text="Blue Team" class="team-label blue-label"/><ui:Label name="BlueCount" text="0 / 4" class="team-count"/></ui:VisualElement>
+                    <ui:Button name="BlueSlot0" class="team-slot"><ui:Label text="01" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="BlueSlot1" class="team-slot"><ui:Label text="02" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="BlueSlot2" class="team-slot"><ui:Label text="03" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="BlueSlot3" class="team-slot"><ui:Label text="04" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="team-column red-column">
+                    <ui:VisualElement class="team-heading"><ui:Label text="Red Team" class="team-label red-label"/><ui:Label name="RedCount" text="0 / 4" class="team-count"/></ui:VisualElement>
+                    <ui:Button name="RedSlot0" class="team-slot"><ui:Label text="01" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="RedSlot1" class="team-slot"><ui:Label text="02" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="RedSlot2" class="team-slot"><ui:Label text="03" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                    <ui:Button name="RedSlot3" class="team-slot"><ui:Label text="04" class="slot-number"/><ui:Label text="Open slot" class="slot-name"/><ui:Label text="JOIN" class="slot-status"/></ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="team-footer">
+            <ui:Label name="TeamHint" text="Choose an open slot to join a team." class="team-hint"/>
+            <ui:VisualElement class="team-actions"><ui:Button name="ReadyButton" text="Ready" class="team-button"/><ui:Button name="StartButton" text="Start Match" class="team-button start-button"/></ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="Toys Death Match" class="team-brand"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     float pitch;
 
     private PhotonView photonView;
+    private PlayerWithGFXJump gfxJump;
 
     [Header("Camera Cleanup")]
     [SerializeField] private float cameraSweepInterval = 0.5f;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        gfxJump = GetComponent<PlayerWithGFXJump>();
 
         //InputManager.Instance = gameObject.AddComponent<InputManager>();
     }
@@ -55,17 +57,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         InputManager.Instance.LockCursor(true);
     }
 
-    /// <summary>
-    /// Removes the camera that belongs to every other networked player so only the
-    /// local player's camera renders.
-    /// <para>
-    /// PhotonView.Get resolves the owning player by walking up the hierarchy (the camera
-    /// sits under Player/GFX, two levels below the view). It returns null for cameras that
-    /// belong to no player - the Lobby scene's Main Camera is still alive for the frame
-    /// the Game scene loads in, because Destroy is deferred - and those must be skipped
-    /// rather than dereferenced.
-    /// </para>
-    /// </summary>
     private void DestroyOtherCameras()
     {
         GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
@@ -83,10 +74,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         }
     }
 
-    /// <summary>
-    /// Remote player prefabs arrive after this player's Start, so a single pass in
-    /// Start can miss their cameras. Re-sweep on a slow timer until the room settles.
-    /// </summary>
     private void SweepForeignCameras()
     {
         if (Time.unscaledTime < nextCameraSweep) return;
@@ -101,9 +88,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Update()
     {
         if (!photonView.IsMine) return;
+        if (InputManager.Instance && InputManager.Instance.IsGameplayBlocked)
+        {
+            if (gfxJump) gfxJump.SetMoveVelocity(Vector3.zero);
+            return;
+        }
 
         MovementAndLook();
-        HandleJump();
+        if (gfxJump == null) HandleJump();
         SweepForeignCameras();
     }
 
@@ -120,7 +112,17 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         currentRot.y += lookDir.x * mouseSensitivity * Time.deltaTime;
 
-        rb.Move(rb.position + newPos, Quaternion.Euler(currentRot));
+        if (gfxJump != null)
+        {
+            // GFX characters keep Rigidbody gravity/vertical velocity in FixedUpdate.
+            var direction = Vector3.ClampMagnitude(capsuleRef.forward * moveDir.y + capsuleRef.right * moveDir.x, 1f);
+            gfxJump.SetMoveVelocity(direction * speed);
+            rb.rotation = Quaternion.Euler(currentRot);
+        }
+        else
+        {
+            rb.Move(rb.position + newPos, Quaternion.Euler(currentRot));
+        }
 
         //float pitch = cam.transform.localEulerAngles.x;
         pitch -= lookDir.y * mouseSensitivity * Time.deltaTime;

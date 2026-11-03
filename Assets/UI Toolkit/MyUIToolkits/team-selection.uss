@@ -1,0 +1,85 @@
+.team-screen {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.88);
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf?fileID=12800000&guid=287a5872154fc5043a8cb796be0c4cc2&type=3#Mono");
+    padding: 52px 64px 36px 64px;
+}
+.team-header, .team-columns, .team-heading, .team-footer, .team-actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.team-header { margin-bottom: 20px; }
+.room-name { font-size: 38px; margin: 0; }
+.team-screen .unity-label { color: rgb(255, 255, 255); }
+.room-meta { font-size: 20px; color: rgb(255, 255, 255); margin-top: 10px; }
+.team-content { flex-grow: 1; justify-content: center; }
+.section-title { font-size: 28px; margin-bottom: 34px; }
+.team-columns { align-items: stretch; }
+.team-column {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 26px;
+    background-color: rgb(18, 18, 18);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 20px;
+}
+.blue-column { margin-right: 40px; }
+.red-column { margin-left: 40px; }
+.team-heading { margin-bottom: 18px; padding-bottom: 18px; border-bottom-width: 1px; border-bottom-color: rgb(68, 68, 64); }
+.team-label { font-size: 30px; -unity-font-style: bold; }
+.blue-column .team-heading { border-bottom-color: rgb(156, 177, 191); }
+.red-column .team-heading { border-bottom-color: rgb(204, 150, 142); }
+.team-count { font-size: 20px; color: rgb(255, 255, 255); }
+.team-slot {
+    flex-direction: row;
+    align-items: center;
+    height: 74px;
+    margin: 0 0 10px 0;
+    padding: 0 22px;
+    background-color: rgb(31, 31, 30);
+    border-width: 3px;
+    border-color: rgb(57, 57, 54);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 12px;
+    color: rgb(255, 255, 255);
+}
+.team-slot:hover { background-color: rgb(43, 43, 40); border-color: rgb(128, 128, 119); }
+.team-slot:focus { border-color: rgb(255, 255, 255); }
+.team-slot:disabled { opacity: 1; }
+.slot-mine { border-color: rgb(255, 255, 255); background-color: rgb(45, 45, 40); }
+.slot-number { font-size: 22px; color: rgb(255, 255, 255); margin-right: 22px; }
+.slot-name { flex-grow: 1; font-size: 28px; -unity-font-style: bold; -unity-text-align: middle-left; overflow: hidden; text-overflow: ellipsis; }
+.slot-status { font-size: 20px; color: rgb(255, 255, 255); margin-left: 12px; }
+.status-ready { -unity-font-style: bold; }
+.team-slot:disabled .unity-label { color: rgb(255, 255, 255); opacity: 1; }
+.team-footer { margin-top: 28px; }
+.team-hint { font-size: 22px; color: rgb(255, 255, 255); }
+.team-button {
+    height: 56px;
+    padding: 0 26px;
+    margin: 0;
+    background-color: rgb(34, 34, 32);
+    border-width: 3px;
+    border-color: rgb(255, 255, 255);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 12px;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+}
+.team-button:hover, .team-button:focus { background-color: rgb(60, 60, 53); border-color: rgb(255, 255, 255); }
+.team-button:disabled { opacity: 1; background-color: rgb(34, 34, 32); border-color: rgb(65, 65, 62); color: rgb(255, 255, 255); }
+.start-button { margin-left: 18px; background-color: rgb(255, 255, 255); color: rgb(22, 22, 20); }
+.start-button:hover { background-color: rgb(255, 255, 255); }
+.leave-button { font-size: 20px; height: 48px; background-color: transparent; }
+.team-brand { font-size: 24px; margin: 36px 0 0 0; color: rgb(255, 255, 255); }
+.team-hidden { display: none; }
+
+.start-button:disabled { background-color: rgb(34, 34, 32); color: rgb(255, 255, 255); }

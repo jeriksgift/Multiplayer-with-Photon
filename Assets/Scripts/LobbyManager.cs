@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    public event System.Action<string> StatusChanged;
+    public string StatusMessage { get; private set; } = string.Empty;
     [SerializeField] private TextMeshProUGUI nickNameInputField;
 
     [SerializeField] private TMP_InputField roomNameInputField;
+    [SerializeField] private TextMeshProUGUI lobbyStatusText;
 
     [SerializeField] private GameObject lobbyPanel;
     [SerializeField] private GameObject roomPanel;
@@ -17,7 +20,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // Set before connecting: Photon requires AutomaticallySyncScene on every client
         // so remote clients follow the master's PhotonNetwork.LoadLevel(). Clients that
         // leave it false stay in the lobby when the host starts the game.
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // Don't sync scene if we're returning from a match (avoids SetProperties error)
+        if (!PlayerUI.isReturningFromMatch)
+            PhotonNetwork.AutomaticallySyncScene = true;
 
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Connecting...");
@@ -25,11 +30,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        PlayerUI.isReturningFromMatch = false;
         LoadingManager.Instance.ShowLoadingScreen("Connecting...");
     }
 
     public override void OnConnectedToMaster()
     {
+        if (PhotonNetwork.OfflineMode) return;
         Debug.Log("Connected to Master " + Time.time);
         PhotonNetwork.JoinLobby();
     }
@@ -39,41 +46,90 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         LoadingManager.Instance.HideLoadingScreen();
     }
 
-    public void CreateOrJoinRoomBtn()
+    public void CreateOrJoinRoomBtn() => EnterRoom(0);
+    public void CreateRoomBtn() => EnterRoom(1);
+    public void JoinRoomBtn() => EnterRoom(2);
+
+    private void EnterRoom(int mode)
     {
-        if (nickNameInputField == null) return;
-        if (string.IsNullOrEmpty((nickNameInputField.text).Trim()) || nickNameInputField.text.Length <= 1) // The text length is giving 1 even if no text was typed
+        if (nickNameInputField == null || roomNameInputField == null) return;
+        var nicknameInput = nickNameInputField.GetComponentInParent<TMP_InputField>();
+        string nickname = nicknameInput ? nicknameInput.text : nickNameInputField.text;
+        if (!TryEnterRoom(nickname, roomNameInputField.text, mode))
         {
-            Debug.Log("Invalid Nickname");
-            return;
+            if (NormalizeEntry(nickname).Length < 2 && nicknameInput) nicknameInput.ActivateInputField();
+            else if (string.IsNullOrWhiteSpace(NormalizeEntry(roomNameInputField.text))) roomNameInputField.ActivateInputField();
+        }
+    }
+
+    public static string NormalizeEntry(string value) => (value ?? string.Empty).Replace("\u200B", "").Trim();
+
+    public bool TryEnterRoom(string nickname, string roomName, int mode = 0)
+    {
+        nickname = NormalizeEntry(nickname);
+        roomName = NormalizeEntry(roomName);
+        if (nickname.Length < 2)
+        {
+            SetLobbyStatus("Enter a player name with at least 2 characters.");
+            return false;
+        }
+        if (string.IsNullOrWhiteSpace(roomName))
+        {
+            SetLobbyStatus("ROOM NAME REQUIRED");
+            return false;
+        }
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            SetLobbyStatus("Connecting to server. Try again in a moment.");
+            return false;
         }
 
-        PhotonNetwork.NickName = nickNameInputField.text;
-
-        if (roomNameInputField.text.Length <= 1)
+        PhotonNetwork.NickName = nickname;
+        if (roomNameInputField) roomNameInputField.text = roomName;
+        SetLobbyStatus(string.Empty);
+        bool sent = mode == 1
+            ? PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 8 }, TypedLobby.Default)
+            : mode == 2 ? PhotonNetwork.JoinRoom(roomName)
+            : PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = 8 }, TypedLobby.Default);
+        if (!sent)
         {
-            PhotonNetwork.JoinRandomRoom();
+            SetLobbyStatus("Room request unavailable. Please try again.");
+            return false;
         }
-        else
-        {
-            Debug.Log("Joining room " + roomNameInputField.text);
-            PhotonNetwork.JoinRoom(roomNameInputField.text);
-        }
+        if (!PhotonNetwork.InRoom) LoadingManager.Instance.ShowLoadingScreen("Loading...");
+        return true;
+    }
 
-        LoadingManager.Instance.ShowLoadingScreen("Loading...");
+    public void LeaveRoomBtn()
+    {
+        if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        roomPanel.SetActive(false);
+        lobbyPanel.SetActive(true);
+        SetLobbyStatus(string.Empty);
+        if (LoadingManager.Instance) LoadingManager.Instance.HideLoadingScreen();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        PhotonNetwork.NickName = nickNameInputField.text;
-        PhotonNetwork.CreateRoom(roomNameInputField.text, new RoomOptions { MaxPlayers = 8 });
-        Debug.Log("Creating room " + roomNameInputField.text);
+        LoadingManager.Instance.HideLoadingScreen();
+        SetLobbyStatus("Unable to enter room: " + message);
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
+    public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        PhotonNetwork.NickName = nickNameInputField.text;
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 8 });
+        LoadingManager.Instance.HideLoadingScreen();
+        SetLobbyStatus("Unable to create room: " + message);
+    }
+
+    private void SetLobbyStatus(string message)
+    {
+        StatusMessage = message;
+        if (lobbyStatusText != null) lobbyStatusText.text = message;
+        StatusChanged?.Invoke(message);
     }
 
     public override void OnJoinedRoom()

@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 596bdbb1d502d9040b6675d286432863
+ModelImporter:
+  serializedVersion: 24600
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+    searchTexturesGlobally: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    preBakeConvexCollisionMesh: 0
+    preBakeTriangleCollisionMesh: 0
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: tripo::Root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::1_Left_Limb_0
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::0_Right_Limb_0
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::1_Left_Limb_1
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::0_Right_Limb_1
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::1_Left_Limb_2
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::0_Right_Limb_2
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::0_Left_Limb_0
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::Spine_0
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_27
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_28
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_39
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_36
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_40
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_37
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_41
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_38
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::1_Left_Limb_3
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tripo::0_Right_Limb_3
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_29
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: bone_26
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: WarZoneSoldier(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: WarZoneSoldier(Clone)
+      position: {x: 0.000000029802322, y: 0.92500013, z: -0.000000029802322}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: tripo::Root
+      parentName: Armature
+      position: {x: 0.5897596, y: -0.61575043, z: -0.31560373}
+      rotation: {x: -0.38558948, y: 0.48482347, z: 0.7842329, w: -0.035295185}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: tripo::0_Left_Limb_0
+      parentName: tripo::Root
+      position: {x: 0.022007646, y: 0.012979091, z: 1.004492}
+      rotation: {x: 0.44739276, y: -0.19220325, z: 0.17732246, w: 0.8552511}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: tripo::0_Left_Limb_1
+      parentName: tripo::0_Left_Limb_0
+      position: {x: 2.3283064e-10, y: 0.196318, z: -0.0000000016298145}
+      rotation: {x: 0.014268525, y: 0.001503152, z: 0.018001227, w: 0.99973506}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999999}
+    - name: tripo::0_Left_Limb_2
+      parentName: tripo::0_Left_Limb_1
+      position: {x: 0.0000000027939677, y: 0.13900574, z: 0.0000000041909516}
+      rotation: {x: -0.020216152, y: -0.0019748919, z: -0.025479602, w: 0.999469}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: tripo::0_Left_Limb_3
+      parentName: tripo::0_Left_Limb_2
+      position: {x: 0.03640965, y: 0.1144804, z: 0.017191302}
+      rotation: {x: -0.2905637, y: 0.48739868, z: 0.6826352, w: -0.4604611}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
+    - name: tripo::0_Left_Limb_4
+      parentName: tripo::0_Left_Limb_3
+      position: {x: 0.000000074505806, y: 0.16824082, z: -0.000000011175871}
+      rotation: {x: -0.23851568, y: -0.24606988, z: -0.18364625, w: 0.92132187}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+    - name: tripo::0_Left_Limb_5
+      parentName: tripo::0_Left_Limb_4
+      position: {x: -0.00000008940697, y: 0.3029127, z: 0.000000115484}
+      rotation: {x: -0.15791653, y: 0.10719861, z: 0.18994483, w: 0.9630638}
+      scale: {x: 0.9999998, y: 0.9999999, z: 1}
+    - name: tripo::0_Left_Limb_6
+      parentName: tripo::0_Left_Limb_5
+      position: {x: 0.00000008288771, y: 0.24270916, z: -0.000000009313226}
+      rotation: {x: -0.009840186, y: -0.03616203, z: -0.10178103, w: 0.99410063}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.99999994}
+    - name: bone_8
+      parentName: tripo::0_Left_Limb_6
+      position: {x: -0.012345828, y: 0.11810673, z: -0.023940228}
+      rotation: {x: -0.082185194, y: -0.5212054, z: -0.014299486, w: 0.8493445}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+    - name: bone_9
+      parentName: bone_8
+      position: {x: -0.000000040978193, y: 0.038916126, z: -0.000000035390258}
+      rotation: {x: -0.07608541, y: -0.00000012328437, z: 0.038042553, w: 0.9963753}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
+    - name: bone_10
+      parentName: bone_9
+      position: {x: -0.00000004284084, y: 0.035402745, z: -0.000000016763806}
+      rotation: {x: 0.0000000037252903, y: 0.00000008009374, z: -0.000000059604645, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: bone_11
+      parentName: tripo::0_Left_Limb_6
+      position: {x: -0.0069688596, y: 0.12071423, z: 0.0014209263}
+      rotation: {x: -0.08463349, y: -0.47151527, z: -0.1348654, w: 0.86736494}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: bone_12
+      parentName: bone_11
+      position: {x: -0.000000007450581, y: 0.042752884, z: 0.00000011594966}
+      rotation: {x: -0.034488797, y: -0.012534841, z: 0.029249748, w: 0.9988983}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: bone_13
+      parentName: bone_12
+      position: {x: -0.000000013969839, y: 0.033116255, z: -0.000000006519258}
+      rotation: {x: 0.000000112224384, y: -0.00000003166497, z: 0.000000014901163, w: 1}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
+    - name: bone_14
+      parentName: tripo::0_Left_Limb_6
+      position: {x: 0.031355288, y: 0.098356694, z: 0.0306005}
+      rotation: {x: 0.0037301145, y: -0.44471648, z: -0.19103748, w: 0.87505317}
+      scale: {x: 1.0000001, y: 1, z: 0.99999976}
+    - name: bone_15
+      parentName: bone_14
+      position: {x: 2.3033309e-10, y: 0.036132697, z: -0.00000017652576}
+      rotation: {x: -0.0898051, y: -0.00000021991023, z: 0.000000056295452, w: 0.9959594}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: bone_16
+      parentName: bone_15
+      position: {x: 7.820864e-10, y: 0.032318152, z: -0.000000001091548}
+      rotation: {x: 0.000000074505806, y: -5.2402527e-14, z: -2.528533e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bone_17
+      parentName: tripo::0_Left_Limb_6
+      position: {x: 0.013688251, y: 0.115604654, z: 0.02227685}
+      rotation: {x: -0.045196272, y: -0.48636895, z: -0.10177137, w: 0.86662865}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: bone_18
+      parentName: bone_17
+      position: {x: -0.000000033527613, y: 0.036848336, z: -0.00000011269003}
+      rotation: {x: -0.13515198, y: 0.061687827, z: -0.09111509, w: 0.9846962}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
+    - name: bone_19
+      parentName: bone_18
+      position: {x: 0.000000005732347, y: 0.038916275, z: -0.000000008325761}
+      rotation: {x: 0.0000000074505797, y: 0.0000000037033225, z: 0.000000001929249, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: tripo::0_Left_Limb_7
+      parentName: tripo::0_Left_Limb_6
+      position: {x: 0.0056507327, y: 0.047508597, z: -0.039029546}
+      rotation: {x: -0.45311773, y: -0.019632969, z: 0.1357488, w: 0.8808355}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: tripo::0_Left_Limb_8
+      parentName: tripo::0_Left_Limb_7
+      position: {x: 0.000000044703484, y: 0.038916197, z: -0.00000018719584}
+      rotation: {x: 0.20634228, y: 0.10854221, z: -0.25508815, w: 0.9383877}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: tripo::0_Left_Limb_9
+      parentName: tripo::0_Left_Limb_8
+      position: {x: -0.000000029802322, y: 0.042752914, z: 0.00000006519258}
+      rotation: {x: 0.0000007115305, y: 0.000000022351742, z: 0.00000024400651, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: tripo::Spine_0
+      parentName: tripo::0_Left_Limb_2
+      position: {x: -0.008618782, y: 0.11448039, z: -0.039330907}
+      rotation: {x: 0.01739966, y: -0.40403607, z: 0.31706232, w: 0.8578599}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bone_24
+      parentName: tripo::Spine_0
+      position: {x: -0.00000018067658, y: 0.1682408, z: 0.000000007450581}
+      rotation: {x: 0.1139422, y: -0.5672878, z: 0.29131785, w: 0.76179767}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.99999994}
+    - name: bone_25
+      parentName: bone_24
+      position: {x: 0.000000016763806, y: 0.29716903, z: -0.00000001816079}
+      rotation: {x: 0.04181841, y: -0.5845021, z: 0.22066729, w: 0.7796887}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: bone_26
+      parentName: bone_25
+      position: {x: 0.00000002561137, y: 0.24549058, z: -0.00000006519258}
+      rotation: {x: -0.14766073, y: 0.17715633, z: -0.02887668, w: 0.97261405}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: bone_27
+      parentName: bone_26
+      position: {x: -0.018350922, y: 0.11740801, z: 0.023523394}
+      rotation: {x: -0.11072809, y: -0.0086436365, z: 0.056145336, w: 0.9922259}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1.0000001}
+    - name: bone_28
+      parentName: bone_27
+      position: {x: 0.000000037252903, y: 0.035402697, z: -0.00000012293458}
+      rotation: {x: -0.00000040233135, y: -0.00000008568168, z: 0.00000016391277, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bone_29
+      parentName: bone_28
+      position: {x: 0.000000007450581, y: 0.035402767, z: 0.00000004284084}
+      rotation: {x: -0.00000078417366, y: -0.000000031664968, z: 0.0000003427267, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: bone_30
+      parentName: bone_26
+      position: {x: -0.0034027249, y: 0.11836517, z: -0.005113952}
+      rotation: {x: 0.10708214, y: 0.057913765, z: -0.07948542, w: 0.98937434}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: bone_31
+      parentName: bone_30
+      position: {x: 0.000000037252903, y: 0.044547454, z: 0.000000014901161}
+      rotation: {x: 0.008398995, y: 0.09872272, z: -0.06583958, w: 0.992899}
+      scale: {x: 1, y: 0.9999998, z: 0.99999994}
+    - name: bone_32
+      parentName: bone_31
+      position: {x: -0.0000000018626451, y: 0.033116326, z: -0.00000014156103}
+      rotation: {x: 0.00000005774201, y: 0.000000078231096, z: -0.000000204891, w: 1}
+      scale: {x: 1, y: 0.9999998, z: 0.9999999}
+    - name: bone_33
+      parentName: bone_26
+      position: {x: 0.03521783, y: 0.09933019, z: -0.022063065}
+      rotation: {x: 0.021270992, y: 0.3608369, z: -0.18041857, w: 0.91476417}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: bone_34
+      parentName: bone_33
+      position: {x: 0.00000003946569, y: 0.03613279, z: -0.00000006635886}
+      rotation: {x: 0.19794513, y: -0.000000077477516, z: 0.000000028091323, w: 0.9802131}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: bone_35
+      parentName: bone_34
+      position: {x: -0.000000001774638, y: 0.02979588, z: 0.000000001974155}
+      rotation: {x: -0.0000008679925, y: -2.076117e-14, z: 1.2922996e-13, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: bone_36
+      parentName: bone_26
+      position: {x: 0.016046226, y: 0.11620827, z: -0.016917307}
+      rotation: {x: -0.0044971695, y: 0.16583408, z: -0.5231946, w: 0.8359105}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: bone_37
+      parentName: bone_36
+      position: {x: 0.000000018626451, y: 0.036848355, z: -0.00000014714897}
+      rotation: {x: 0.04584755, y: 0.04702165, z: -0.118048444, w: 0.99083376}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000001}
+    - name: bone_38
+      parentName: bone_37
+      position: {x: 0.000000007450581, y: 0.03958152, z: 0.00000005401671}
+      rotation: {x: 0.0000000102445465, y: -0.000000052154054, z: 0.000000013038514, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: bone_39
+      parentName: bone_26
+      position: {x: -0.009663612, y: 0.047033258, z: 0.03300007}
+      rotation: {x: 0.61112344, y: -0.4161586, z: 0.34431174, w: 0.5786101}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: bone_40
+      parentName: bone_39
+      position: {x: -0.000000037252903, y: 0.036132816, z: 0.000000029802322}
+      rotation: {x: 0.0785315, y: 0.070719875, z: 0.072541036, w: 0.99175066}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: bone_41
+      parentName: bone_40
+      position: {x: -0.000000052154064, y: 0.040879615, z: 0.000000029802322}
+      rotation: {x: -0.00000006531097, y: 0.0000001601875, z: -0.00000005389829, w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
+    - name: tripo::Head_0
+      parentName: tripo::0_Left_Limb_2
+      position: {x: -0.005518712, y: 0.1603005, z: 0.004396487}
+      rotation: {x: -0.08928156, y: 0.0037105216, z: -0.11293754, w: 0.98957574}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: tripo::Head_1
+      parentName: tripo::Head_0
+      position: {x: 0.000000018626451, y: 0.11054507, z: -0.000000024447218}
+      rotation: {x: -0.000000042160796, y: -0.00000014435501, z: -0.000000055609885, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: tripo::0_Right_Limb_0
+      parentName: tripo::Root
+      position: {x: 0.096495196, y: -0.056994326, z: 0.87441397}
+      rotation: {x: -0.19715758, y: -0.29200703, z: 0.91311127, w: -0.20515512}
+      scale: {x: 1, y: 0.9999997, z: 0.9999999}
+    - name: tripo::0_Right_Limb_1
+      parentName: tripo::0_Right_Limb_0
+      position: {x: -0, y: 0.4000801, z: -0.000000011175871}
+      rotation: {x: 0.034896355, y: -0.010031375, z: -0.06997238, w: 0.9968879}
+      scale: {x: 1, y: 1, z: 1}
+    - name: tripo::0_Right_Limb_2
+      parentName: tripo::0_Right_Limb_1
+      position: {x: -0.000000018626451, y: 0.38375717, z: -0.000000016763806}
+      rotation: {x: -0.5952564, y: 0.13803338, z: 0.21424912, w: 0.7620459}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999994}
+    - name: tripo::0_Right_Limb_3
+      parentName: tripo::0_Right_Limb_2
+      position: {x: -0.00000018626451, y: 0.18466651, z: -0.00000008195639}
+      rotation: {x: -0.00000013783576, y: -0.0000000782311, z: 0.000000111758716, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: tripo::1_Left_Limb_0
+      parentName: tripo::Root
+      position: {x: -0.02539345, y: 0.09536672, z: 0.87441397}
+      rotation: {x: 0.23067582, y: 0.27254668, z: -0.9016363, w: 0.24404697}
+      scale: {x: 1, y: 0.9999996, z: 0.99999976}
+    - name: tripo::1_Left_Limb_1
+      parentName: tripo::1_Left_Limb_0
+      position: {x: -0.0000000037252903, y: 0.40092775, z: -0.000000007450581}
+      rotation: {x: 0.059957087, y: 0.0007979014, z: -0.04983794, w: 0.99695575}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: tripo::1_Left_Limb_2
+      parentName: tripo::1_Left_Limb_1
+      position: {x: 0.000000007450581, y: 0.38436896, z: -0.000000037252903}
+      rotation: {x: -0.72119844, y: 0.13778928, z: 0.09860911, w: 0.6716869}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+    - name: tripo::1_Left_Limb_3
+      parentName: tripo::1_Left_Limb_2
+      position: {x: -0.00000016763806, y: 0.18367401, z: 0.00000005401671}
+      rotation: {x: -0.000000068917885, y: -0.00000030547383, z: -0.000000009313227, w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: tripo_node_c00af949-1a26-41ba-8e62-e7758b125777
+      parentName: WarZoneSoldier(Clone)
+      position: {x: 0.000000029802322, y: 0.92500013, z: -0.000000029802322}
+      rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+      scale: {x: 1.8500001, y: 1.8500001, z: 1.8500001}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

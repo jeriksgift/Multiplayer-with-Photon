@@ -11,12 +11,16 @@ public class HealthComponent : MonoBehaviour
     private float health;
     [SerializeField] private float maxHealth;
     private bool isDead;
+    public bool IsDead => isDead;
+    public int LifeRevision { get; private set; }
     private int lastShooterActorNumber = -1;
 
     private PhotonView photonView;
 
-    private MeshRenderer[] renderers;
+    private Renderer[] renderers;
+    private bool[] rendererStates;
     private Collider[] colliders;
+    private bool[] colliderStates;
     private PlayerMovement playerMovement;
     private WeaponSystem weaponSystem;
     private Rigidbody rigidbody;
@@ -27,24 +31,21 @@ public class HealthComponent : MonoBehaviour
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
-        renderers = GetComponentsInChildren<MeshRenderer>();
-        colliders = GetComponentsInChildren<Collider>();
+        renderers = GetComponentsInChildren<Renderer>(true);
+        rendererStates = Array.ConvertAll(renderers, r => r.enabled);
+        colliders = GetComponentsInChildren<Collider>(true);
+        colliderStates = Array.ConvertAll(colliders, c => c.enabled);
         playerMovement = GetComponent<PlayerMovement>();
         weaponSystem = GetComponent<WeaponSystem>();
         rigidbody = GetComponent<Rigidbody>();
         playerUI = GetComponent<PlayerUI>();
-    }
-
-    private void Start()
-    {
         health = maxHealth;
-        isDead = false;
     }
 
     [PunRPC]
     public void Damage(float damage, Vector3 hitPoint, Vector3 hitNormal, int shooterActorNumber)
     {
-        if (isDead) return;
+        if (!photonView.IsMine || isDead || damage <= 0f) return;
         lastShooterActorNumber = shooterActorNumber;
         health -= damage;
 
@@ -60,13 +61,13 @@ public class HealthComponent : MonoBehaviour
         if (health <= 0)
         {
             Dead();
-            isDead = true;
         }
     }
 
     [PunRPC]
     private void PlayBloodEffectRpc(Vector3 hitPoint, Vector3 hitNormal)
     {
+        if (!damageParticleSystem) return;
         damageParticleSystem.transform.position = hitPoint;
         damageParticleSystem.transform.rotation = Quaternion.LookRotation(hitNormal);
 
@@ -85,44 +86,68 @@ public class HealthComponent : MonoBehaviour
             global::GameManager.AddKill(lastShooterActorNumber);
         }
 
-        photonView.RPC(nameof(EnableOrDisableGraphics), RpcTarget.All, false);
+        photonView.RPC(nameof(SetLifeStateRpc), RpcTarget.All, LifeRevision + 1, true, transform.position, transform.rotation);
         StartCoroutine(RespawnPlayer());
     }
 
     private IEnumerator RespawnPlayer()
     {
         yield return new WaitForSeconds(2f);
-        health = maxHealth;
-        isDead = false;
-        HealthChanged?.Invoke(health / maxHealth);
-
-        Transform spawnLoc = GameManager.Instance.GetSpawnLoc();
-        if (spawnLoc != null)
-        {
-            transform.position = spawnLoc.position;
-            transform.rotation = spawnLoc.rotation;
-        }
-
-        photonView.RPC(nameof(EnableOrDisableGraphics), RpcTarget.All, true);
+        if (!PhotonNetwork.InRoom || (GameManager.Instance && GameManager.Instance.matchEnded)) yield break;
+        Transform spawnLoc = GameManager.Instance ? GameManager.Instance.GetSpawnLoc() : null;
+        Vector3 position = spawnLoc ? spawnLoc.position : new Vector3(0f, 2f, 0f);
+        Quaternion rotation = spawnLoc ? spawnLoc.rotation : Quaternion.identity;
+        photonView.RPC(nameof(SetLifeStateRpc), RpcTarget.All, LifeRevision + 1, false, position, rotation);
     }
 
     [PunRPC]
+    private void SetLifeStateRpc(int revision, bool dead, Vector3 position, Quaternion rotation, PhotonMessageInfo info)
+    {
+        if (info.Sender != photonView.Owner) return;
+        ApplyLifeState(revision, dead, position, rotation);
+    }
+
+    // Also carried in motion snapshots so late joiners receive the current life state.
+    public void ApplyLifeState(int revision, bool dead, Vector3 position, Quaternion rotation)
+    {
+        if (revision <= LifeRevision) return;
+        LifeRevision = revision;
+        isDead = dead;
+        // Teleport and reset interpolation BEFORE restoring any renderer or collider.
+        var sync = GetComponent<PlayerNetworkSync>();
+        if (sync) sync.Teleport(position, rotation);
+        else
+        {
+            rigidbody.position = position;
+            rigidbody.rotation = rotation;
+            transform.SetPositionAndRotation(position, rotation);
+        }
+        if (!rigidbody.isKinematic)
+        {
+            rigidbody.linearVelocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+        }
+        GetComponent<PlayerWithGFXJump>()?.ResetMotion();
+        GetComponent<PlayerWithGFXPresentation>()?.ResetMotion();
+        if (!dead)
+        {
+            health = maxHealth;
+            lastShooterActorNumber = -1;
+            HealthChanged?.Invoke(1f);
+        }
+        EnableOrDisableGraphics(!dead);
+    }
+
     private void EnableOrDisableGraphics(bool enable)
     {
-        foreach (var item in renderers)
-        {
-            item.enabled = enable;
-        }
-        foreach (var item in colliders)
-        {
-            item.enabled = enable;
-        }
-        playerMovement.enabled = enable;
-        weaponSystem.enabled = enable;
-        rigidbody.useGravity = enable;
-
-        playerUI.worldNameText.gameObject.SetActive(enable);
-        if (photonView.IsMine && enable)
-            playerUI.worldNameText.gameObject.SetActive(false);
+        for (int i = 0; i < renderers.Length; i++) renderers[i].enabled = enable && rendererStates[i];
+        for (int i = 0; i < colliders.Length; i++) colliders[i].enabled = enable && colliderStates[i];
+        playerMovement.enabled = enable && photonView.IsMine;
+        weaponSystem.enabled = enable && photonView.IsMine;
+        bool local = photonView.IsMine || (!PhotonNetwork.InRoom && photonView.ViewID == 0);
+        rigidbody.isKinematic = !local;
+        rigidbody.useGravity = enable && local;
+        if (playerUI && playerUI.worldNameText)
+            playerUI.worldNameText.gameObject.SetActive(enable && !local);
     }
 }

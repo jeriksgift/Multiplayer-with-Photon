@@ -7,6 +7,8 @@ public class RoomSlot : MonoBehaviour
     [Header("References")]
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private Image background;
+    [SerializeField] private TextMeshProUGUI statusText;
+    [SerializeField] private Color occupiedTextColor = Color.white;
 
     [Header("Team")]
     [SerializeField] private DataTypes.Team team;
@@ -27,6 +29,7 @@ public class RoomSlot : MonoBehaviour
     public bool isMine { get; private set; }
 
     private string playerName = string.Empty;
+    public string PlayerName => playerName;
 
     private void Awake()
     {
@@ -62,8 +65,13 @@ public class RoomSlot : MonoBehaviour
         {
             playerNameText.text = isOccupied
                 ? playerName + (isMine ? " (You)" : string.Empty)
-                : "Empty";
-            playerNameText.color = isOccupied ? Color.white : emptyTextColor;
+                : "OPEN SLOT";
+            playerNameText.color = isOccupied ? occupiedTextColor : emptyTextColor;
+        }
+        if (statusText)
+        {
+            statusText.text = !isOccupied ? "CLICK TO JOIN" : occupantIsReady ? "READY" : "NOT READY";
+            statusText.color = occupantIsReady ? new Color(.58f, .79f, .49f) : emptyTextColor;
         }
 
         if (background == null) return;

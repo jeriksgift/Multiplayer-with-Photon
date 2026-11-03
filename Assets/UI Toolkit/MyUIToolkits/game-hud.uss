@@ -1,0 +1,44 @@
+.game-hud {
+    flex-grow: 1;
+    padding: 32px 40px;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf?fileID=12800000&guid=287a5872154fc5043a8cb796be0c4cc2&type=3#Mono");
+}
+.game-hud .unity-label { color: rgb(255, 255, 255); margin: 0; padding: 0; }
+.hud-top, .hud-bottom { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+.hud-top { flex-grow: 1; }
+.room-info { width: 330px; padding-top: 6px; }
+.room-name { font-size: 26px; overflow: hidden; text-overflow: ellipsis; margin-bottom: 10px; }
+.hud-caption { font-size: 18px; }
+.hud-panel, .hud-menu {
+    background-color: rgba(18, 18, 18, 0.96);
+    border-width: 3px;
+    border-color: rgb(255, 255, 255);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 12px;
+}
+.score-area { position: absolute; left: 0; right: 0; align-items: center; }
+.score-panel { width: 520px; height: 116px; flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 28px; }
+.team-score { width: 94px; align-items: center; }
+.blue-score { border-bottom-width: 3px; border-bottom-color: rgb(156, 177, 191); }
+.red-score { border-bottom-width: 3px; border-bottom-color: rgb(204, 150, 142); }
+.score-value { font-size: 42px; -unity-font-style: bold; }
+.timer-group { align-items: center; }
+.timer-value { font-size: 36px; -unity-font-style: bold; }
+.hud-menu { margin: 0; padding: 12px 24px; font-size: 22px; color: rgb(255, 255, 255); }
+.hud-menu:hover, .hud-menu:focus { background-color: rgb(54, 54, 49); }
+.hud-bottom { align-items: flex-end; }
+.health-panel { width: 280px; padding: 16px 24px 22px 24px; }
+.health-heading { flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.health-value { font-size: 40px; -unity-font-style: bold; }
+.health-track { height: 6px; background-color: rgb(65, 65, 62); }
+.health-fill { height: 100%; width: 100%; background-color: rgb(255, 255, 255); }
+.weapon-panel { width: 300px; padding: 20px 24px; }
+.weapon-name { font-size: 30px; -unity-font-style: bold; margin-top: 8px; }
+.crosshair { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.crosshair-horizontal { position: absolute; left: -8px; top: -1px; width: 16px; height: 2px; background-color: rgb(255, 255, 255); }
+.crosshair-vertical { position: absolute; left: -1px; top: -8px; width: 2px; height: 16px; background-color: rgb(255, 255, 255); }
+.respawn-status { position: absolute; top: 58%; left: 0; right: 0; font-size: 30px; -unity-font-style: bold; -unity-text-align: middle-center; }
+.hud-hidden { display: none; }

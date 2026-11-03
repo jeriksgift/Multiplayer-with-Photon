@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public static System.Action<float> OnTimerChanged;
     public static System.Action<int, string> OnMatchEnded; // winner, playerStats string
 
-    [SerializeField] private GameObject playerPrefab;
+    [Header("Team Player Prefabs")]
+    [SerializeField] private GameObject bluePlayerPrefab;
+    [SerializeField] private GameObject redPlayerPrefab;
 
     public int blueKills = 0;
     public int redKills = 0;
@@ -99,7 +101,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
             SyncScoresToRoom();
         }
 
-        if (TryGetSpawnLoc(RoomManager.GetLocalTeam(), RoomManager.GetLocalTeamIndex(), out Transform spawn))
+        DataTypes.Team team = RoomManager.GetLocalTeam();
+        GameObject playerPrefab = team == DataTypes.Team.Blue ? bluePlayerPrefab : redPlayerPrefab;
+        if (playerPrefab == null)
+        {
+            Debug.LogError($"No player prefab assigned for team {team}.", this);
+            return;
+        }
+
+        if (TryGetSpawnLoc(team, RoomManager.GetLocalTeamIndex(), out Transform spawn))
         {
             PhotonNetwork.Instantiate(playerPrefab.name, spawn.position, spawn.rotation);
         }
@@ -270,9 +280,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         Transform[] points = team == DataTypes.Team.Blue ? blueSpawnPoints : redSpawnPoints;
         if (points == null || points.Length == 0) return false;
 
-        bool[] taken = GetTakenFlags(points.Length);
+        bool[] taken = GetTakenFlags(team, points.Length);
 
-        if (preferredIndex >= 0 && preferredIndex < points.Length && !taken[preferredIndex])
+        if (preferredIndex >= 0 && preferredIndex < points.Length && points[preferredIndex] != null && !taken[preferredIndex])
         {
             spawn = points[preferredIndex];
             return true;
@@ -280,7 +290,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
         for (int i = 0; i < points.Length; i++)
         {
-            if (taken[i]) continue;
+            if (taken[i] || points[i] == null) continue;
             spawn = points[i];
             return true;
         }
@@ -295,13 +305,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
             : null;
     }
 
-    private bool[] GetTakenFlags(int count)
+    private bool[] GetTakenFlags(DataTypes.Team team, int count)
     {
         var taken = new bool[count];
 
         foreach (var player in PhotonNetwork.PlayerList)
         {
-            if (player == null || player.IsLocal) continue;
+            if (player == null || player.IsLocal || RoomManager.GetTeam(player) != team) continue;
 
             int index = RoomManager.GetTeamIndex(player);
             if (index >= 0 && index < count) taken[index] = true;

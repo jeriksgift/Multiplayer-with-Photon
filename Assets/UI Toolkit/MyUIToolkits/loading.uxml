@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="loading.uss" />
+    <ui:VisualElement name="LoadingPanel" class="loading-screen loading-hidden">
+        <ui:VisualElement class="loading-center">
+            <ui:Label name="LoadingStatus" text="Connecting..." class="loading-status" />
+            <ui:VisualElement name="LoadingTrack" class="loading-track">
+                <ui:VisualElement name="LoadingFill" class="loading-fill" />
+            </ui:VisualElement>
+            <ui:Label name="LoadingProgress" class="loading-progress" />
+        </ui:VisualElement>
+        <ui:VisualElement class="loading-footer">
+            <ui:Label text="Toys Death Match" class="loading-brand" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

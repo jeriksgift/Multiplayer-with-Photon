@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
 
     private PlayerInput playerInput;
+    private ToysGameUI gameUI;
+    public bool IsGameplayBlocked => gameUI && gameUI.IsExitOpen;
 
     [HideInInspector] public InputAction move;
     [HideInInspector] public InputAction look;
@@ -16,18 +19,32 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-
         playerInput = GetComponent<PlayerInput>();
+        gameUI = GetComponent<ToysGameUI>();
+        var view = GetComponent<PhotonView>();
+        bool local = view == null || view.IsMine || (!PhotonNetwork.InRoom && view.ViewID == 0);
+        if (!local)
+        {
+            // Remote avatars must never pair with this client's keyboard or mouse.
+            playerInput.enabled = false;
+            enabled = false;
+            return;
+        }
+        Instance = this;
+        // Prefabs start with PlayerInput disabled so a remote instance cannot pair
+        // devices during OnEnable before ownership has been checked here.
+        playerInput.enabled = true;
         move = playerInput.actions.FindAction("Move");
         look = playerInput.actions.FindAction("Look");
         jump = playerInput.actions.FindAction("Jump");
         sprint = playerInput.actions.FindAction("Sprint");
         fire = playerInput.actions.FindAction("Fire");
         escape = playerInput.actions.FindAction("Escape");
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     public void LockCursor(bool locked)
@@ -46,7 +63,8 @@ public class InputManager : MonoBehaviour
 
         if (escapePressed)
         {
-            LockCursor(!Cursor.visible);
+            if (gameUI) gameUI.ToggleExit();
+            else LockCursor(!Cursor.visible);
         }
     }
 }

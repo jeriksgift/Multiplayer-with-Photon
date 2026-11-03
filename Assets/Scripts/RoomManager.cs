@@ -28,6 +28,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     private readonly List<RoomSlot> slots = new();
     private readonly Dictionary<int, int> slotOwners = new();
+    public event System.Action StateChanged;
+    public IReadOnlyList<RoomSlot> Slots => slots;
+    public bool CanStartMatch => PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient && CanStart(GetOrderedPlayers());
 
     private void Awake()
     {
@@ -76,7 +79,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         SetLocalProps(-1, DataTypes.Team.Blue, -1, false);
         if (roomNameTxt != null)
         {
-            roomNameTxt.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
+            roomNameTxt.text = PhotonNetwork.CurrentRoom.Name.ToUpperInvariant();
         }
         Refresh();
     }
@@ -86,9 +89,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player player) => Refresh();
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps) => Refresh();
+    public override void OnMasterClientSwitched(Player newMasterClient) => Refresh();
 
-    private void OnSlotClicked(int index)
+    public void OnSlotClicked(int index)
     {
+        if (!PhotonNetwork.InRoom) return;
         if (index < 0 || index >= slots.Count) return;
 
         if (GetSlot(PhotonNetwork.LocalPlayer) == index)
@@ -102,8 +107,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         SetLocalSlot(index);
     }
 
-    private void OnReadyClicked()
+    public void OnReadyClicked()
     {
+        if (!PhotonNetwork.InRoom) return;
         if (GetSlot(PhotonNetwork.LocalPlayer) < 0)
         {
             Debug.Log("Pick a slot before readying up.");
@@ -117,9 +123,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
             !GetReady(PhotonNetwork.LocalPlayer));
     }
 
-    private void OnStartClicked()
+    public void OnStartClicked()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (!CanStartMatch) return;
 
         if (startButton != null) startButton.interactable = false;
 
@@ -129,7 +135,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
 
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.LoadLevel(gameSceneName);
+        if (LoadingManager.Instance != null) LoadingManager.Instance.LoadNetworkLevel(gameSceneName);
+        else PhotonNetwork.LoadLevel(gameSceneName);
     }
 
     private void SetLocalSlot(int slotIndex)
@@ -247,6 +254,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
 
         UpdateButtons(ordered);
+        StateChanged?.Invoke();
     }
 
     private static List<Player> GetOrderedPlayers()

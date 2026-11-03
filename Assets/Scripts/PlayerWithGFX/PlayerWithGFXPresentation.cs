@@ -62,7 +62,6 @@ public sealed class PlayerWithGFXPresentation : MonoBehaviourPun, IPunObservable
             // The shared controllers require a Photon owner. This prefab also supports
             // playing its placed scene instance directly, without joining a room.
             movement.enabled = false;
-            weapon.enabled = false;
         }
         if (!Local)
         {
@@ -106,7 +105,7 @@ public sealed class PlayerWithGFXPresentation : MonoBehaviourPun, IPunObservable
         {
             if (Standalone) UpdateStandalone();
             else if (playerCamera) pitch = Mathf.DeltaAngle(0, playerCamera.transform.localEulerAngles.x);
-            if (Pressed("Fire") && (!InputManager.Instance || !InputManager.Instance.IsGameplayBlocked) && (Standalone || (weapon && weapon.enabled)))
+            if (weapon && weapon.enabled && weapon.LastShotFrame == Time.frameCount)
             {
                 shots++;
                 PlayShot();

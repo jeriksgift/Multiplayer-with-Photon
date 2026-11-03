@@ -12,14 +12,18 @@
             </ui:VisualElement>
             <ui:Button name="MenuButton" text="Esc / Menu" class="hud-menu"/>
         </ui:VisualElement>
-        <ui:VisualElement class="crosshair" picking-mode="Ignore"><ui:VisualElement class="crosshair-horizontal"/><ui:VisualElement class="crosshair-vertical"/></ui:VisualElement>
+        <ui:VisualElement name="Crosshair" class="crosshair" picking-mode="Ignore"><ui:VisualElement class="crosshair-outline-horizontal"/><ui:VisualElement class="crosshair-outline-vertical"/><ui:VisualElement class="crosshair-horizontal"/><ui:VisualElement class="crosshair-vertical"/></ui:VisualElement>
         <ui:Label name="RespawnStatus" text="RESPAWNING" class="respawn-status hud-hidden"/>
         <ui:VisualElement class="hud-bottom">
             <ui:VisualElement class="hud-panel health-panel">
                 <ui:VisualElement class="health-heading"><ui:Label text="HEALTH" class="hud-caption"/><ui:Label name="HealthValue" text="100" class="health-value"/></ui:VisualElement>
                 <ui:VisualElement class="health-track"><ui:VisualElement name="HealthFill" class="health-fill"/></ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement class="hud-panel weapon-panel"><ui:Label text="PRIMARY" class="hud-caption"/><ui:Label text="Assault Rifle" class="weapon-name"/></ui:VisualElement>
+            <ui:VisualElement class="hud-panel ammo-panel">
+                <ui:Label text="AMMO / UNLIMITED RESERVE" class="hud-caption"/>
+                <ui:Label name="AmmoValue" text="07 / 07" class="ammo-value"/>
+                <ui:Label name="AmmoStatus" text="R / RELOAD" class="hud-caption"/>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

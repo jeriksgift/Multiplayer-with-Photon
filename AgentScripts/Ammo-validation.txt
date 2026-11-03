@@ -1,0 +1,2 @@
+Blue: 7-round limit, no eighth shot, automatic and R reload, unlimited refill, blocked reload/fire during menu, shot effects and respawn reset passed.
+Red: 7-round limit, no eighth shot, automatic and R reload, unlimited refill, blocked reload/fire during menu, shot effects and respawn reset passed.

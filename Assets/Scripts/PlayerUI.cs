@@ -125,6 +125,17 @@ public class PlayerUI : MonoBehaviourPunCallbacks
 
     private void OnMatchEnded(int winner, string playerStats)
     {
+        if (photonView != null && PhotonNetwork.InRoom && !photonView.IsMine)
+            return;
+
+        var results = GetComponent<MatchResultsScreen>();
+        if (results != null)
+        {
+            if (matchEndPanel != null) matchEndPanel.SetActive(false);
+            results.Show(winner, playerStats);
+            return;
+        }
+
         if (matchEndPanel == null)
             return;
 
@@ -204,43 +215,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         // Prevent automatic scene synchronization during the exit.
         PhotonNetwork.AutomaticallySyncScene = false;
         isReturningFromMatch = true;
-
-        if (PhotonNetwork.InRoom)
-        {
-            bool leaveRequested = PhotonNetwork.LeaveRoom();
-            Debug.Log("LeaveRoom requested: " + leaveRequested);
-
-            if (!leaveRequested)
-            {
-                Debug.LogError("Failed to initiate Photon LeaveRoom(). Falling back to direct load.");
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
-                isExitingToLobby = false;
-                return;
-            }
-
-            // Wait for Photon to finish leaving the room before loading lobby
-            StartCoroutine(WaitForLeaveRoom());
-        }
-        else
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
-            isExitingToLobby = false;
-        }
-    }
-
-    private System.Collections.IEnumerator WaitForLeaveRoom()
-    {
-        float timeout = 5f;
-        float elapsed = 0f;
-        while (PhotonNetwork.InRoom && elapsed < timeout)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        Debug.Log("Left room. InRoom=" + PhotonNetwork.InRoom + " after " + elapsed + "s");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
-        isExitingToLobby = false;
+        MatchLobbyReturn.Begin();
     }
 
     // =========================================================

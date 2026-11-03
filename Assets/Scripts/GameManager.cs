@@ -61,6 +61,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (cause == DisconnectCause.DisconnectByClientLogic) return;
+        PlayerUI.isReturningFromMatch = true;
+        PhotonNetwork.AutomaticallySyncScene = false;
+        MatchLobbyReturn.Begin();
+    }
+
     public void OnEvent(EventData photonEvent)
     {
         if (!PhotonNetwork.IsMasterClient) return;

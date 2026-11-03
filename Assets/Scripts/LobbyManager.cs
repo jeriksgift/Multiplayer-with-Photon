@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -14,6 +15,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject lobbyPanel;
     [SerializeField] private GameObject roomPanel;
+    private Coroutine reconnectRoutine;
+    private int reconnectAttempts;
+    private bool quitting;
 
     private void Awake()
     {
@@ -24,19 +28,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (!PlayerUI.isReturningFromMatch)
             PhotonNetwork.AutomaticallySyncScene = true;
 
-        PhotonNetwork.ConnectUsingSettings();
-        Debug.Log("Connecting...");
+        if (!PhotonNetwork.OfflineMode &&
+            (PhotonNetwork.NetworkClientState == ClientState.Disconnected ||
+             PhotonNetwork.NetworkClientState == ClientState.PeerCreated))
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            Debug.Log("Connecting...");
+        }
     }
 
     private void Start()
     {
         PlayerUI.isReturningFromMatch = false;
         LoadingManager.Instance.ShowLoadingScreen("Connecting...");
+        if (PhotonNetwork.OfflineMode || PhotonNetwork.InLobby)
+            LoadingManager.Instance.HideLoadingScreen();
+        else if (PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
+            OnConnectedToMaster();
     }
 
     public override void OnConnectedToMaster()
     {
         if (PhotonNetwork.OfflineMode) return;
+        StopReconnect();
+        reconnectAttempts = 0;
         Debug.Log("Connected to Master " + Time.time);
         PhotonNetwork.JoinLobby();
     }
@@ -44,6 +59,61 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined Lobby " + PhotonNetwork.CurrentLobby.Name);
         LoadingManager.Instance.HideLoadingScreen();
+        SetLobbyStatus(string.Empty);
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (LoadingManager.Instance) LoadingManager.Instance.HideLoadingScreen();
+        roomPanel.SetActive(false);
+        lobbyPanel.SetActive(true);
+        if (quitting || PhotonNetwork.OfflineMode || cause == DisconnectCause.DisconnectByClientLogic)
+        {
+            StopReconnect();
+            return;
+        }
+        if (reconnectRoutine == null) reconnectRoutine = StartCoroutine(Reconnect());
+    }
+
+    private IEnumerator Reconnect()
+    {
+        while (!quitting && !PhotonNetwork.OfflineMode && !PhotonNetwork.IsConnectedAndReady)
+        {
+            float delay = Mathf.Min(2f * Mathf.Pow(2f, Mathf.Min(reconnectAttempts, 4)), 30f);
+            SetLobbyStatus("Connection lost. Retrying in " + delay.ToString("0") + "s...");
+            yield return new WaitForSecondsRealtime(delay);
+            if (quitting || PhotonNetwork.OfflineMode || PhotonNetwork.IsConnectedAndReady) break;
+            if (PhotonNetwork.NetworkClientState == ClientState.Disconnected ||
+                PhotonNetwork.NetworkClientState == ClientState.PeerCreated)
+            {
+                reconnectAttempts++;
+                SetLobbyStatus("Reconnecting... Attempt " + reconnectAttempts);
+                PhotonNetwork.ConnectUsingSettings();
+            }
+            while (!quitting && !PhotonNetwork.OfflineMode && !PhotonNetwork.IsConnectedAndReady &&
+                   PhotonNetwork.NetworkClientState != ClientState.Disconnected &&
+                   PhotonNetwork.NetworkClientState != ClientState.PeerCreated)
+                yield return null;
+        }
+        reconnectRoutine = null;
+    }
+
+    private void StopReconnect()
+    {
+        if (reconnectRoutine != null) StopCoroutine(reconnectRoutine);
+        reconnectRoutine = null;
+    }
+
+    public override void OnDisable()
+    {
+        StopReconnect();
+        base.OnDisable();
+    }
+
+    private void OnApplicationQuit()
+    {
+        quitting = true;
+        StopReconnect();
     }
 
     public void CreateOrJoinRoomBtn() => EnterRoom(0);
@@ -80,6 +150,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         if (!PhotonNetwork.IsConnectedAndReady)
         {
+            if (!PhotonNetwork.OfflineMode &&
+                (PhotonNetwork.NetworkClientState == ClientState.Disconnected ||
+                 PhotonNetwork.NetworkClientState == ClientState.PeerCreated))
+                PhotonNetwork.ConnectUsingSettings();
             SetLobbyStatus("Connecting to server. Try again in a moment.");
             return false;
         }

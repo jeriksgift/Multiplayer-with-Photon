@@ -8,7 +8,8 @@ public class InputManager : MonoBehaviour
 
     private PlayerInput playerInput;
     private ToysGameUI gameUI;
-    public bool IsGameplayBlocked => gameUI && gameUI.IsExitOpen;
+    public bool IsGameplayBlocked => (gameUI && gameUI.IsExitOpen) ||
+        (GameManager.Instance && GameManager.Instance.matchEnded);
 
     [HideInInspector] public InputAction move;
     [HideInInspector] public InputAction look;
@@ -55,6 +56,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance && GameManager.Instance.matchEnded) return;
         bool escapePressed = false;
         if (escape != null && escape.WasPressedThisFrame())
             escapePressed = true;

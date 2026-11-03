@@ -1,0 +1,1 @@
+PASS: simulated timeout callbacks automatically start real Photon connections after 2s then 4s, including while Time.timeScale=0; duplicate callbacks share one loop; next delay is 8s and cap is 30s; intentional disconnect and component disable cancel retries. Successful online reconnection remains unverified due to TLS/network failures.

@@ -35,10 +35,13 @@
 .health-value { font-size: 40px; -unity-font-style: bold; }
 .health-track { height: 6px; background-color: rgb(65, 65, 62); }
 .health-fill { height: 100%; width: 100%; background-color: rgb(255, 255, 255); }
-.weapon-panel { width: 300px; padding: 20px 24px; }
-.weapon-name { font-size: 30px; -unity-font-style: bold; margin-top: 8px; }
-.crosshair { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
-.crosshair-horizontal { position: absolute; left: -8px; top: -1px; width: 16px; height: 2px; background-color: rgb(255, 255, 255); }
-.crosshair-vertical { position: absolute; left: -1px; top: -8px; width: 2px; height: 16px; background-color: rgb(255, 255, 255); }
+.ammo-panel { width: 340px; padding: 16px 24px; }
+.ammo-value { font-size: 42px; -unity-font-style: bold; margin-top: 8px; margin-bottom: 8px; }
+.game-hud .ammo-empty { color: rgb(204, 150, 142); }
+.crosshair { position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; margin-left: -12px; margin-top: -12px; }
+.crosshair-outline-horizontal { position: absolute; left: 0; top: 9px; width: 24px; height: 6px; background-color: rgb(0, 0, 0); }
+.crosshair-outline-vertical { position: absolute; left: 9px; top: 0; width: 6px; height: 24px; background-color: rgb(0, 0, 0); }
+.crosshair-horizontal { position: absolute; left: 2px; top: 11px; width: 20px; height: 2px; background-color: rgb(255, 255, 255); }
+.crosshair-vertical { position: absolute; left: 11px; top: 2px; width: 2px; height: 20px; background-color: rgb(255, 255, 255); }
 .respawn-status { position: absolute; top: 58%; left: 0; right: 0; font-size: 30px; -unity-font-style: bold; -unity-text-align: middle-center; }
 .hud-hidden { display: none; }

@@ -12,6 +12,8 @@ public sealed class GameHudScreen : MonoBehaviour
     private Label blueScore, redScore, timer, healthValue, respawn;
     private VisualElement healthFill;
     private bool subscribed;
+    private WeaponSystem weapon;
+    private Label ammoValue, ammoStatus;
 
     private void Start()
     {
@@ -32,6 +34,11 @@ public sealed class GameHudScreen : MonoBehaviour
         healthValue = root.Q<Label>("HealthValue");
         healthFill = root.Q("HealthFill");
         respawn = root.Q<Label>("RespawnStatus");
+        ammoValue = root.Q<Label>("AmmoValue");
+        ammoStatus = root.Q<Label>("AmmoStatus");
+        weapon = GetComponent<WeaponSystem>();
+        if (weapon) weapon.AmmoChanged += SetAmmo;
+        SetAmmo();
         root.Q<Label>("RoomName").text = PhotonNetwork.CurrentRoom != null ? PhotonNetwork.CurrentRoom.Name : "Toys Death Match";
         root.Q<Label>("LocalTeam").text = RoomManager.GetLocalTeam() == DataTypes.Team.Blue ? "BLUE TEAM / DEATHMATCH" : "RED TEAM / DEATHMATCH";
         root.Q<Label>("ScoreTarget").text = "FIRST TO " + GameManager.WIN_SCORE;
@@ -49,6 +56,13 @@ public sealed class GameHudScreen : MonoBehaviour
     }
 
     private void OpenMenu() { if (menu) menu.ToggleExit(); }
+    private void SetAmmo()
+    {
+        if (!weapon) return;
+        ammoValue.text = weapon.AmmoInMagazine.ToString("00") + " / " + WeaponSystem.MagazineSize.ToString("00");
+        ammoStatus.text = weapon.IsReloading ? "RELOADING..." : "R / RELOAD";
+        ammoValue.EnableInClassList("ammo-empty", weapon.AmmoInMagazine == 0);
+    }
     private void SetScores(int blue, int red) { blueScore.text = blue.ToString(); redScore.text = red.ToString(); }
     private void SetTimer(float seconds)
     {
@@ -67,6 +81,7 @@ public sealed class GameHudScreen : MonoBehaviour
     {
         if (!subscribed) return;
         if (health) health.HealthChanged -= SetHealth;
+        if (weapon) weapon.AmmoChanged -= SetAmmo;
         GameManager.OnScoreChanged -= SetScores;
         GameManager.OnTimerChanged -= SetTimer;
         GameManager.OnMatchEnded -= EndMatch;

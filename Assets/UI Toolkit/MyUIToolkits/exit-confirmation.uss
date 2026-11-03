@@ -1,0 +1,46 @@
+.exit-overlay {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.78);
+    padding: 40px;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf?fileID=12800000&guid=287a5872154fc5043a8cb796be0c4cc2&type=3#Mono");
+}
+.exit-overlay .unity-label { color: rgb(255, 255, 255); margin: 0; padding: 0; }
+.exit-dialog {
+    width: 740px;
+    max-width: 100%;
+    padding: 42px;
+    background-color: rgb(18, 18, 18);
+    border-width: 3px;
+    border-color: rgb(255, 255, 255);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 20px;
+}
+.exit-title { font-size: 42px; -unity-font-style: bold; }
+.exit-overlay .exit-description { font-size: 24px; white-space: normal; margin-top: 22px; }
+.exit-overlay .exit-room { font-size: 20px; margin-top: 26px; padding: 16px 0; border-top-width: 1px; border-top-color: rgb(83, 83, 78); overflow: hidden; text-overflow: ellipsis; }
+.exit-actions { flex-direction: row; margin-top: 18px; }
+.exit-button {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 64px;
+    margin: 0;
+    font-size: 27px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(30, 30, 28);
+    border-width: 3px;
+    border-color: rgb(255, 255, 255);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 12px;
+}
+.exit-button:hover, .exit-button:focus { background-color: rgb(61, 61, 54); }
+.exit-confirm { margin-left: 20px; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); }
+.exit-confirm:hover, .exit-confirm:focus { background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); border-color: rgb(204, 150, 142); }
+.exit-overlay .exit-notice { font-size: 18px; white-space: normal; margin-top: 26px; }
+.exit-hidden { display: none; }

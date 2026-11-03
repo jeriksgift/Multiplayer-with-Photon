@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="exit-confirmation.uss"/>
+    <ui:VisualElement class="exit-overlay">
+        <ui:VisualElement class="exit-dialog">
+            <ui:Label name="ExitTitle" text="Exit game?" class="exit-title"/>
+            <ui:Label name="ExitDescription" text="Close Toys Death Match and return to your desktop?" class="exit-description"/>
+            <ui:Label name="ExitRoom" text="Toys Death Match" class="exit-room"/>
+            <ui:VisualElement class="exit-actions">
+                <ui:Button name="CancelExitButton" text="Cancel" class="exit-button"/>
+                <ui:Button name="ConfirmExitButton" text="Exit Game" class="exit-button exit-confirm"/>
+            </ui:VisualElement>
+            <ui:Label name="LiveMatchNotice" text="The match continues while this menu is open." class="exit-notice"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

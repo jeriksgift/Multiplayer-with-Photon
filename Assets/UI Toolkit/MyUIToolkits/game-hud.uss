@@ -30,12 +30,12 @@
 .hud-menu { margin: 0; padding: 12px 24px; font-size: 22px; color: rgb(255, 255, 255); }
 .hud-menu:hover, .hud-menu:focus { background-color: rgb(54, 54, 49); }
 .hud-bottom { align-items: flex-end; }
-.health-panel { width: 280px; padding: 16px 24px 22px 24px; }
+.health-panel { position: absolute; left: 50%; bottom: 0; margin-left: -140px; width: 280px; padding: 16px 24px 22px 24px; }
 .health-heading { flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .health-value { font-size: 40px; -unity-font-style: bold; }
 .health-track { height: 6px; background-color: rgb(65, 65, 62); }
 .health-fill { height: 100%; width: 100%; background-color: rgb(255, 255, 255); }
-.ammo-panel { width: 380px; padding: 16px 24px; }
+.ammo-panel { margin-left: auto; width: 256px; padding: 16px 24px; }
 .ammo-heading { flex-direction: row; justify-content: space-between; align-items: center; }
 .ammo-reserve { font-size: 20px; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); -unity-font-style: bold; }
 .ammo-value { font-size: 42px; -unity-font-style: bold; margin-top: 8px; margin-bottom: 8px; }

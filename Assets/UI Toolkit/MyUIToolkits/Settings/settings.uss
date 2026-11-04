@@ -11,6 +11,9 @@
 .settings-slider > .unity-base-field__label { min-width: 130px; color: white; font-size: 28px; }
 .settings-slider .unity-base-slider__tracker { background-color: rgb(90, 90, 90); height: 5px; }
 .settings-slider .unity-base-slider__dragger { background-color: white; border-color: white; width: 24px; height: 24px; margin-top: -10px; border-radius: 12px; }
+#ControlsPage .settings-slider > .unity-base-field__label { min-width: 260px; width: 260px; font-size: 24px; flex-shrink: 0; }
+#ControlsPage .unity-base-text-field__input { background-color: rgb(35,35,35); color: white; border-width: 1px; border-color: rgb(150,150,150); }
+#ControlsPage .unity-text-field { min-width: 80px; flex-shrink: 0; }
 .settings-friend-row { margin: 6px 0 14px; padding: 12px 16px; background-color: rgb(35, 35, 35); border-top-left-radius: 30px; border-top-right-radius: 10px; border-bottom-right-radius: 30px; border-bottom-left-radius: 10px; }
 .settings-friend-id { color: rgb(180, 180, 180); font-size: 19px; white-space: normal; }
 .settings-friend-actions { flex-direction: row; flex-wrap: wrap; }

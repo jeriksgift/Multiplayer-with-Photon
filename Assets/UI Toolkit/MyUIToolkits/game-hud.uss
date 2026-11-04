@@ -47,3 +47,11 @@
 .crosshair-vertical { position: absolute; left: 11px; top: 2px; width: 2px; height: 20px; background-color: rgb(255, 255, 255); }
 .respawn-status { position: absolute; top: 58%; align-self: center; padding: 10px 22px; background-color: rgb(18, 18, 18); border-radius: 10px; font-size: 32px; -unity-font-style: bold; -unity-text-align: middle-center; }
 .hud-hidden { display: none; }
+.mobile-controls { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.look-area { position: absolute; left: 50%; right: 0; top: 0; bottom: 0; }
+.touch-control { position: absolute; width: 130px; height: 130px; border-radius: 65px; border-width: 3px; border-color: rgba(255,255,255,.75); background-color: rgba(18,18,18,.65); align-items: center; justify-content: center; }
+.touch-control .unity-label { font-size: 22px; -unity-font-style: bold; }
+.touch-joystick { left: 5%; bottom: 7%; width: 220px; height: 220px; border-radius: 110px; }
+.joystick-knob { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin-left: -38px; margin-top: -38px; border-radius: 38px; background-color: rgba(255,255,255,.65); }
+.touch-sprint { left: 8%; bottom: 34%; }
+.touch-jump { right: 5%; bottom: 34%; }

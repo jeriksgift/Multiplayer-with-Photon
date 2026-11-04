@@ -8,7 +8,18 @@ public class InputManager : MonoBehaviour
 
     private PlayerInput playerInput;
     private ToysGameUI gameUI;
-    public bool IsGameplayBlocked => (gameUI && gameUI.IsExitOpen) ||
+    public GameHudScreen Hud { get; set; }
+    public Vector2 TouchMove { get; set; }
+    public Vector2 TouchLook { get; set; }
+    public bool TouchSprint { get; set; }
+    public int TouchJumpFrame { get; set; } = -1;
+    public int TouchFireFrame { get; set; } = -1;
+    public Vector2 MoveValue => Application.isMobilePlatform ? TouchMove : move.ReadValue<Vector2>() + TouchMove;
+    public Vector2 LookValue => Application.isMobilePlatform ? TouchLook : look.ReadValue<Vector2>() + TouchLook;
+    public bool SprintHeld => TouchSprint || sprint.IsPressed();
+    public bool JumpPressed => TouchJumpFrame == Time.frameCount || jump.WasPressedThisFrame();
+    public bool FirePressed => TouchFireFrame == Time.frameCount || (!Application.isMobilePlatform && fire.WasPressedThisFrame());
+    public bool IsGameplayBlocked => (gameUI && gameUI.IsExitOpen) || (Hud && Hud.IsPanelOpen) ||
         (GameManager.Instance && GameManager.Instance.matchEnded);
 
     [HideInInspector] public InputAction move;
@@ -50,6 +61,7 @@ public class InputManager : MonoBehaviour
 
     public void LockCursor(bool locked)
     {
+        if (Application.isMobilePlatform) locked = false;
         Cursor.lockState = (locked) ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !locked;
     }

@@ -89,7 +89,7 @@ public sealed class PlayerWithGFXPresentation : MonoBehaviourPun, IPunObservable
         if (playerCamera) { playerCamera.gameObject.SetActive(true); playerCamera.enabled = true; }
         foreach (var canvas in GetComponentsInChildren<Canvas>(true))
             if (canvas.renderMode == RenderMode.ScreenSpaceOverlay) canvas.gameObject.SetActive(true);
-        if (Standalone) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+        if (Standalone) InputManager.Instance.LockCursor(true);
     }
 
     void Update()
@@ -147,17 +147,17 @@ public sealed class PlayerWithGFXPresentation : MonoBehaviourPun, IPunObservable
 
     void UpdateStandalone()
     {
-        if (Cursor.lockState != CursorLockMode.Locked || !capsule.enabled)
+        if ((!Application.isMobilePlatform && Cursor.lockState != CursorLockMode.Locked) || !capsule.enabled || InputManager.Instance.IsGameplayBlocked)
         {
             jumpController.SetMoveVelocity(Vector3.zero);
             return;
         }
-        var move = Read("Move");
-        var look = Read("Look");
+        var move = InputManager.Instance.MoveValue;
+        var look = InputManager.Instance.LookValue;
         transform.Rotate(0, look.x * mouseSensitivity * Time.deltaTime, 0);
         pitch = Mathf.Clamp(pitch - look.y * mouseSensitivity * Time.deltaTime, -70, 70);
         playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
-        float rate = Held("Sprint") ? runSpeed : walkSpeed;
+        float rate = InputManager.Instance.SprintHeld ? runSpeed : walkSpeed;
         var direction = Vector3.ClampMagnitude(transform.forward * move.y + transform.right * move.x, 1);
         jumpController.SetMoveVelocity(direction * rate);
         // PlayerWithGFXJump owns takeoff and gravity in FixedUpdate.

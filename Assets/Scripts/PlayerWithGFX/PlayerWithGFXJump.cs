@@ -41,7 +41,8 @@ public sealed class PlayerWithGFXJump : MonoBehaviourPun
 
     void Update()
     {
-        if (Local && capsule.enabled && Cursor.lockState == CursorLockMode.Locked && jump != null && jump.WasPressedThisFrame())
+        if (Local && capsule.enabled && InputManager.Instance && !InputManager.Instance.IsGameplayBlocked &&
+            (Application.isMobilePlatform || Cursor.lockState == CursorLockMode.Locked) && InputManager.Instance.JumpPressed)
             requestedAt = Time.time;
     }
 

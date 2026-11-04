@@ -101,10 +101,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private void MovementAndLook()
     {
-        speed = (InputManager.Instance.sprint.IsPressed()) ? runSpeed : walkSpeed;
+        speed = InputManager.Instance.SprintHeld ? runSpeed : walkSpeed;
 
-        moveDir = InputManager.Instance.move.ReadValue<Vector2>();
-        lookDir = InputManager.Instance.look.ReadValue<Vector2>();
+        moveDir = InputManager.Instance.MoveValue;
+        lookDir = InputManager.Instance.LookValue;
 
         currentRot = rb.rotation.eulerAngles;
 
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private void HandleJump()
     {
-        if (InputManager.Instance.jump.WasPressedThisFrame() && IsGrounded())
+        if (InputManager.Instance.JumpPressed && IsGrounded())
         {
             rb.AddForce(capsuleRef.transform.up * jumpForce, ForceMode.Impulse);
         }

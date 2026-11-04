@@ -2,6 +2,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[DefaultExecutionOrder(-10)]
 public sealed class GameHudScreen : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
@@ -14,6 +15,8 @@ public sealed class GameHudScreen : MonoBehaviour
     private bool subscribed;
     private WeaponSystem weapon;
     private Label ammoValue, ammoStatus;
+    private MobileGameControls mobileControls;
+    public bool IsPanelOpen { get; set; }
 
     private void Start()
     {
@@ -28,6 +31,8 @@ public sealed class GameHudScreen : MonoBehaviour
         menuButton.pickingMode = PickingMode.Position;
         menu = GetComponent<ToysGameUI>();
         menuButton.clicked += OpenMenu;
+        GetComponent<InputManager>().Hud = this;
+        mobileControls = new MobileGameControls(root, GetComponent<InputManager>());
         blueScore = root.Q<Label>("BlueScore");
         redScore = root.Q<Label>("RedScore");
         timer = root.Q<Label>("MatchTimer");
@@ -56,6 +61,10 @@ public sealed class GameHudScreen : MonoBehaviour
     }
 
     private void OpenMenu() { if (menu) menu.ToggleExit(); }
+    private void Update() { mobileControls?.Tick(); }
+    private void OnApplicationFocus(bool focused) { if (!focused) mobileControls?.Reset(); }
+    private void OnApplicationPause(bool paused) { if (paused) mobileControls?.Reset(); }
+    private void OnDisable() { mobileControls?.Reset(); }
     private void SetAmmo()
     {
         if (!weapon) return;
@@ -79,6 +88,7 @@ public sealed class GameHudScreen : MonoBehaviour
     private void EndMatch(int winner, string stats) { document.gameObject.SetActive(false); }
     private void OnDestroy()
     {
+        mobileControls?.Dispose();
         if (!subscribed) return;
         if (health) health.HealthChanged -= SetHealth;
         if (weapon) weapon.AmmoChanged -= SetAmmo;

@@ -65,7 +65,7 @@ public class WeaponSystem : MonoBehaviourPun
         }
         if (InputManager.Instance && InputManager.Instance.IsGameplayBlocked) return;
         if (playerInput && playerInput.actions.FindAction("Reload", false)?.WasPressedThisFrame() == true) Reload();
-        if (InputManager.Instance && InputManager.Instance.fire != null && InputManager.Instance.fire.WasPressedThisFrame()) Fire();
+        if (InputManager.Instance && InputManager.Instance.FirePressed) Fire();
     }
 
     public void Reload()

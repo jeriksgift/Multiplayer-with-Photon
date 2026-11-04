@@ -22,6 +22,8 @@ public sealed class MobileGameControls : IDisposable
         knob = new VisualElement { pickingMode = PickingMode.Ignore }; knob.AddToClassList("joystick-knob"); stick.Add(knob);
         var sprintButton = Add("Sprint", "SPRINT", "touch-sprint");
         var jumpButton = Add("Jump", "JUMP", "touch-jump");
+        var fireButton = Add("Fire", "FIRE", "touch-fire");
+        fireButton.RegisterCallback<PointerDownEvent>(e => { if (!input.IsGameplayBlocked) input.TouchFireFrame = Time.frameCount; e.StopPropagation(); });
         stick.RegisterCallback<PointerDownEvent>(e => { if (movePointer >= 0 || input.IsGameplayBlocked) return; movePointer = e.pointerId; stick.CapturePointer(e.pointerId); Move(e.position); e.StopPropagation(); });
         stick.RegisterCallback<PointerMoveEvent>(e => { if (e.pointerId == movePointer) Move(e.position); });
         stick.RegisterCallback<PointerUpEvent>(e => { if (e.pointerId == movePointer) { stick.ReleasePointer(e.pointerId); ClearMove(); } });

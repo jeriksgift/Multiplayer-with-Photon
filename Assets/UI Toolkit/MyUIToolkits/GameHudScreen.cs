@@ -42,6 +42,9 @@ public sealed class GameHudScreen : MonoBehaviour
         ammoValue = root.Q<Label>("AmmoValue");
         ammoStatus = root.Q<Label>("AmmoStatus");
         weapon = GetComponent<WeaponSystem>();
+        var ammoArea = root.Q("AmmoArea");
+        ammoArea.pickingMode = PickingMode.Position;
+        ammoArea.RegisterCallback<PointerDownEvent>(Reload);
         if (weapon) weapon.AmmoChanged += SetAmmo;
         SetAmmo();
         root.Q<Label>("RoomName").text = PhotonNetwork.CurrentRoom != null ? PhotonNetwork.CurrentRoom.Name : "Toys Death Match";
@@ -61,6 +64,7 @@ public sealed class GameHudScreen : MonoBehaviour
     }
 
     private void OpenMenu() { if (menu) menu.ToggleExit(); }
+    private void Reload(PointerDownEvent evt) { if (weapon) weapon.Reload(); evt.StopPropagation(); }
     private void Update() { mobileControls?.Tick(); }
     private void OnApplicationFocus(bool focused) { if (!focused) mobileControls?.Reset(); }
     private void OnApplicationPause(bool paused) { if (paused) mobileControls?.Reset(); }
@@ -69,7 +73,7 @@ public sealed class GameHudScreen : MonoBehaviour
     {
         if (!weapon) return;
         ammoValue.text = weapon.AmmoInMagazine.ToString("00") + " / " + WeaponSystem.MagazineSize.ToString("00");
-        ammoStatus.text = weapon.IsReloading ? "RELOADING..." : "R / RELOAD";
+        ammoStatus.text = weapon.IsReloading ? "RELOADING..." : Application.isMobilePlatform ? "TAP / RELOAD" : "R / RELOAD";
         ammoValue.EnableInClassList("ammo-empty", weapon.AmmoInMagazine == 0);
     }
     private void SetScores(int blue, int red) { blueScore.text = blue.ToString(); redScore.text = red.ToString(); }
@@ -89,6 +93,7 @@ public sealed class GameHudScreen : MonoBehaviour
     private void OnDestroy()
     {
         mobileControls?.Dispose();
+        root?.Q("AmmoArea")?.UnregisterCallback<PointerDownEvent>(Reload);
         if (!subscribed) return;
         if (health) health.HealthChanged -= SetHealth;
         if (weapon) weapon.AmmoChanged -= SetAmmo;

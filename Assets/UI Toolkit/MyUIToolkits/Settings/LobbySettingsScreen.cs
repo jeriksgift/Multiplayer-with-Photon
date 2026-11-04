@@ -18,6 +18,10 @@ public sealed class LobbySettingsScreen : MonoBehaviour
     private VisualElement overlay;
     private Label status;
     private bool busy;
+    private bool inMatch;
+    private GameHudScreen matchHud;
+    private CursorLockMode priorLock;
+    private bool priorVisible;
     private bool friendsInitialized;
     private int generation;
     private readonly Dictionary<string, string> publicPlayerIds = new Dictionary<string, string>();
@@ -29,6 +33,9 @@ public sealed class LobbySettingsScreen : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         overlay = root.Q("SettingsOverlay");
         status = root.Q<Label>("SettingsStatus");
+        matchHud = GetComponentInParent<GameHudScreen>();
+        inMatch = matchHud != null;
+        if (inMatch) { BindMatch(); return; }
         Bind("SettingsButton", Open);
         Bind("CloseSettingsButton", Close);
         foreach (string tab in Tabs) { string selected = tab; Bind(tab + "Tab", () => SelectTab(selected)); }
@@ -80,6 +87,15 @@ public sealed class LobbySettingsScreen : MonoBehaviour
 
     public void Open()
     {
+        if (inMatch)
+        {
+            if (matchHud.IsPanelOpen || GetComponentInParent<ToysGameUI>().IsExitOpen) return;
+            priorLock = UnityEngine.Cursor.lockState; priorVisible = UnityEngine.Cursor.visible;
+            matchHud.IsPanelOpen = true;
+            Show("SettingsOverlay", true); RefreshSound(); RefreshGraphics(); SelectTab("Controls");
+            UnityEngine.Cursor.lockState = CursorLockMode.None; UnityEngine.Cursor.visible = true;
+            return;
+        }
         if (!AccountSession.Instance.IsReady) { AccountSession.Instance.RequireLogin(); return; }
         Show("SettingsOverlay", true);
         SetLobbyEnabled(false);
@@ -94,6 +110,12 @@ public sealed class LobbySettingsScreen : MonoBehaviour
 
     public void Close()
     {
+        if (inMatch)
+        {
+            Show("SettingsOverlay", false); matchHud.IsPanelOpen = false;
+            UnityEngine.Cursor.lockState = priorLock; UnityEngine.Cursor.visible = priorVisible;
+            PlayerPrefs.Save(); return;
+        }
         if (busy) return;
         if (!root.Q("DeleteConfirmationOverlay").ClassListContains("toys-hidden")) { CloseDelete(); return; }
         Show("SettingsOverlay", false);
@@ -112,6 +134,24 @@ public sealed class LobbySettingsScreen : MonoBehaviour
         }
         status.text = string.Empty;
         if (selected == "Friends") RefreshFriends();
+    }
+
+    private void BindMatch()
+    {
+        foreach (string tab in new[] { "Accounts", "Friends" }) Show(tab + "Tab", false);
+        Bind("CloseSettingsButton", Close);
+        foreach (string tab in new[] { "Controls", "Sound", "Graphics" }) { string name = tab; Bind(tab + "Tab", () => SelectTab(name)); }
+        foreach (string channel in new[] { "Master", "Music", "Sfx" })
+        {
+            var slider = root.Q<Slider>(channel + "Volume");
+            slider.RegisterValueChangedCallback(OnVolumeChanged);
+            unbind.Add(() => slider.UnregisterValueChangedCallback(OnVolumeChanged));
+        }
+        for (int i = 0; i < PlayerSettingsService.GraphicsOptions.Length; i++)
+        {
+            int index = i;
+            Bind("Graphics" + PlayerSettingsService.GraphicsOptions[i], () => { PlayerSettingsService.Instance.SetGraphics(index); RefreshGraphics(); });
+        }
     }
 
     private void RefreshAccount()

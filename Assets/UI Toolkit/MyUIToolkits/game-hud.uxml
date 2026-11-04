@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="MatchSettings" src="Settings/settings.uxml" />
     <Style src="project://database/Assets/UI%20Toolkit/MyUIToolkits/game-hud.uss?fileID=7433441132597879392&amp;guid=be801e955e4e43945a16f9eb8a9b399a&amp;type=3#game-hud"/>
     <ui:VisualElement name="GameHud" picking-mode="Ignore" class="game-hud">
         <ui:VisualElement class="hud-top">
@@ -22,7 +23,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button name="MenuButton" text="Esc / Menu" class="hud-menu"/>
+            <ui:Button name="MenuButton" text="Settings" class="hud-menu"/>
         </ui:VisualElement>
         <ui:VisualElement name="Crosshair" picking-mode="Ignore" class="crosshair">
             <ui:VisualElement class="crosshair-outline-horizontal"/>
@@ -32,6 +33,7 @@
         </ui:VisualElement>
         <ui:Label name="RespawnStatus" text="RESPAWNING" class="respawn-status hud-hidden"/>
         <ui:VisualElement class="hud-bottom">
+            <ui:Button name="LeaveMatchButton" text="Leave Match" class="hud-menu leave-match" />
             <ui:VisualElement class="hud-panel health-panel">
                 <ui:VisualElement class="health-heading">
                     <ui:Label text="HEALTH" class="hud-caption"/>
@@ -56,5 +58,6 @@
                 <ui:ScrollView name="ScoreboardRows" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Instance template="MatchSettings" name="MatchSettingsHost" class="match-settings-host" />
     </ui:VisualElement>
 </ui:UXML>

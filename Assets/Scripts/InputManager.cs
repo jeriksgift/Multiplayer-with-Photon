@@ -77,6 +77,7 @@ public class InputManager : MonoBehaviour
 
         if (escapePressed)
         {
+            if (Hud && Hud.ClosePanel()) return;
             if (gameUI) gameUI.ToggleExit();
             else LockCursor(!Cursor.visible);
         }

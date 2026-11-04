@@ -22,6 +22,7 @@ public sealed class GameHudScreen : MonoBehaviour
     private CursorLockMode previousLock;
     private bool previousVisible;
     private float nextScoreboardRefresh;
+    private LobbySettingsScreen settings;
 
     private void Start()
     {
@@ -36,6 +37,12 @@ public sealed class GameHudScreen : MonoBehaviour
         menuButton.pickingMode = PickingMode.Position;
         menu = GetComponent<ToysGameUI>();
         menuButton.clicked += OpenMenu;
+        root.Q("MatchSettingsHost").Query<VisualElement>().ForEach(element => element.pickingMode = PickingMode.Position);
+        root.Q("MatchSettingsHost").pickingMode = PickingMode.Ignore;
+        settings = document.GetComponent<LobbySettingsScreen>();
+        if (!settings) settings = document.gameObject.AddComponent<LobbySettingsScreen>();
+        root.Q<Button>("LeaveMatchButton").pickingMode = PickingMode.Position;
+        root.Q<Button>("LeaveMatchButton").clicked += LeaveMatch;
         GetComponent<InputManager>().Hud = this;
         mobileControls = new MobileGameControls(root, GetComponent<InputManager>());
         root.Q("ScoreArea").pickingMode = PickingMode.Position;
@@ -73,7 +80,14 @@ public sealed class GameHudScreen : MonoBehaviour
         if (game && game.matchEnded) document.gameObject.SetActive(false);
     }
 
-    private void OpenMenu() { if (menu) menu.ToggleExit(); }
+    private void OpenMenu() { if (settings) settings.Open(); }
+    private void LeaveMatch() { if (menu && !IsPanelOpen) menu.ToggleExit(); }
+    public bool ClosePanel()
+    {
+        if (scoreboardOpen) { CloseScoreboard(); return true; }
+        if (settings && settings.IsOpen) { settings.Close(); return true; }
+        return false;
+    }
     private void Reload(PointerDownEvent evt) { if (weapon) weapon.Reload(); evt.StopPropagation(); }
     private void Update()
     {

@@ -50,3 +50,6 @@
 }
 
 .lobby-exit-button:hover, .lobby-exit-button:focus { background-color: rgb(60, 60, 53); }
+
+.lobby-settings-button { width: 70px; padding: 12px; background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Shared/gear.svg"); -unity-background-scale-mode: scale-to-fit; }
+.lobby-settings-instance { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }

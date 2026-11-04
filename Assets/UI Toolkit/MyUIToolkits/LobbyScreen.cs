@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(100)]
 [RequireComponent(typeof(UIDocument))]
@@ -9,40 +10,35 @@ public sealed class LobbyScreen : MonoBehaviour
 {
     [SerializeField] private LobbyManager lobbyManager;
 
-    private TextField nicknameField;
     private TextField roomField;
     private Button enterButton;
-    private Button exitButton;
+    private Button settingsButton;
+    private LobbySettingsScreen settings;
     private Label dateTimeLabel;
     private Label statusLabel;
     private VisualElement root;
     private IVisualElementScheduledItem clock;
-    private string nickname;
     private string roomName;
 
     private void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
-        nicknameField = root.Q<TextField>("NickNameTextField");
         roomField = root.Q<TextField>("RoomNameTextField");
         enterButton = root.Q<Button>("CreateJoinRoomButton");
-        exitButton = root.Q<Button>("ExitGameButton");
+        settingsButton = root.Q<Button>("SettingsButton");
+        settings = GetComponent<LobbySettingsScreen>();
         dateTimeLabel = root.Q<Label>("DateTimeLabel");
         statusLabel = root.Q<Label>("LobbyStatusLabel");
-        if (!lobbyManager || nicknameField == null || roomField == null || enterButton == null || exitButton == null || dateTimeLabel == null || statusLabel == null)
+        if (!lobbyManager || roomField == null || enterButton == null || settingsButton == null || dateTimeLabel == null || statusLabel == null)
         {
             Debug.LogError("LobbyScreen is missing its manager or a named element in lobby.uxml.", this);
             return;
         }
 
-        if (nickname != null) nicknameField.SetValueWithoutNotify(nickname);
         if (roomName != null) roomField.SetValueWithoutNotify(roomName);
-        nicknameField.maxLength = 16;
         roomField.maxLength = 24;
-        nicknameField.RegisterValueChangedCallback(OnNicknameChanged);
         roomField.RegisterValueChangedCallback(OnRoomChanged);
         enterButton.clicked += Submit;
-        exitButton.clicked += OpenExit;
         root.RegisterCallback<KeyDownEvent>(OnKeyDown);
         lobbyManager.StatusChanged += ShowStatus;
         ShowStatus(lobbyManager.StatusMessage);
@@ -54,26 +50,14 @@ public sealed class LobbyScreen : MonoBehaviour
     {
         clock?.Pause();
         clock = null;
-        if (nicknameField != null)
-        {
-            nickname = nicknameField.value;
-            nicknameField.UnregisterValueChangedCallback(OnNicknameChanged);
-        }
         if (roomField != null)
         {
             roomName = roomField.value;
             roomField.UnregisterValueChangedCallback(OnRoomChanged);
         }
         if (enterButton != null) enterButton.clicked -= Submit;
-        if (exitButton != null) exitButton.clicked -= OpenExit;
         root?.UnregisterCallback<KeyDownEvent>(OnKeyDown);
         if (lobbyManager) lobbyManager.StatusChanged -= ShowStatus;
-    }
-
-    private void OnNicknameChanged(ChangeEvent<string> evt)
-    {
-        nickname = evt.newValue;
-        ShowStatus(string.Empty);
     }
 
     private void OnRoomChanged(ChangeEvent<string> evt)
@@ -85,29 +69,26 @@ public sealed class LobbyScreen : MonoBehaviour
     private void OnKeyDown(KeyDownEvent evt)
     {
         if (evt.keyCode != KeyCode.Return && evt.keyCode != KeyCode.KeypadEnter) return;
-        if (evt.target is VisualElement target && (target == exitButton || exitButton.Contains(target))) return;
+        if (settings && settings.IsOpen) return;
+        if (evt.target is VisualElement target && (target == settingsButton || settingsButton.Contains(target))) return;
         Submit();
         evt.StopPropagation();
     }
 
     private void Submit()
     {
-        string player = LobbyManager.NormalizeEntry(nicknameField.value);
         string room = LobbyManager.NormalizeEntry(roomField.value);
         // Cache the canonical values before joining can disable this screen.
-        nickname = player;
         roomName = room;
-        nicknameField.SetValueWithoutNotify(player);
         roomField.SetValueWithoutNotify(room);
-        if (lobbyManager.TryEnterRoom(player, room)) return;
-        if (player.Length < 2) nicknameField.Focus();
-        else if (string.IsNullOrWhiteSpace(room)) roomField.Focus();
+        if (lobbyManager.TryEnterRoom(room)) return;
+        if (string.IsNullOrWhiteSpace(room)) roomField.Focus();
     }
 
-    private void OpenExit()
+    private void Update()
     {
-        var menu = FindAnyObjectByType<ToysGameUI>();
-        if (menu) menu.ShowExit();
+        if (Keyboard.current == null || !Keyboard.current.escapeKey.wasPressedThisFrame || !settings) return;
+        if (settings.IsOpen) settings.Close(); else settings.Open();
     }
 
     private void ShowStatus(string message)

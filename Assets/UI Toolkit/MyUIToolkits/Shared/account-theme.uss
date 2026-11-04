@@ -1,0 +1,19 @@
+.toys-ui { -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Mono.ttf"); color: white; font-size: 24px; }
+.toys-card { background-color: rgba(0, 0, 0, 0.82); border-top-left-radius: 50px; border-top-right-radius: 20px; border-bottom-right-radius: 50px; border-bottom-left-radius: 20px; padding: 36px; }
+.toys-button { background-color: black; color: white; border-color: white; border-width: 3px; border-top-left-radius: 30px; border-top-right-radius: 10px; border-bottom-right-radius: 30px; border-bottom-left-radius: 10px; padding: 12px 22px; margin: 6px 0; font-size: 26px; -unity-font-style: bold; }
+.toys-button:hover, .toys-button:focus { background-color: rgb(55, 55, 55); }
+.toys-button:disabled { opacity: 0.45; }
+.toys-button--selected { background-color: white; color: black; }
+.toys-button--selected:hover, .toys-button--selected:focus { background-color: rgb(210, 210, 210); }
+.toys-danger { border-color: rgb(244, 171, 121); color: rgb(244, 171, 121); }
+.toys-title { font-size: 42px; -unity-font-style: bold; margin-bottom: 20px; }
+.toys-heading { font-size: 29px; -unity-font-style: bold; margin: 12px 0; }
+.toys-caption { font-size: 21px; color: rgb(200, 200, 200); white-space: normal; margin-bottom: 12px; }
+.toys-status { color: rgb(244, 171, 121); font-size: 22px; white-space: normal; margin: 10px 0; }
+.toys-field { margin: 8px 0 16px; font-size: 28px; }
+.toys-field > .unity-base-field__label { color: white; min-width: 135px; }
+.toys-field > .unity-base-text-field__input { background-color: rgb(35, 35, 35); color: white; border-width: 2px; border-color: rgb(150, 150, 150); border-top-left-radius: 30px; border-top-right-radius: 10px; border-bottom-right-radius: 30px; border-bottom-left-radius: 10px; padding: 12px 20px; }
+.toys-field:focus > .unity-base-text-field__input { border-color: white; }
+.toys-row { flex-direction: row; align-items: center; }
+.toys-spacer { flex-grow: 1; }
+.toys-hidden { display: none; }

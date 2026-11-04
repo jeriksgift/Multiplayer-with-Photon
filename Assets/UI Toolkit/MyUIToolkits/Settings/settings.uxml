@@ -1,0 +1,72 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="../Shared/account-theme.uss" />
+    <ui:Style src="settings.uss" />
+    <ui:VisualElement name="SettingsOverlay" class="toys-ui settings-overlay toys-hidden">
+        <ui:VisualElement name="SettingsCard" class="toys-card settings-card">
+            <ui:VisualElement class="toys-row">
+                <ui:Label text="Settings" class="toys-title toys-spacer" />
+                <ui:Button name="CloseSettingsButton" text="Close" class="toys-button settings-close" />
+            </ui:VisualElement>
+            <ui:VisualElement class="settings-body">
+                <ui:VisualElement class="settings-tabs">
+                    <ui:Button name="AccountsTab" text="Accounts" class="toys-button settings-tab toys-button--selected" />
+                    <ui:Button name="ControlsTab" text="Controls" class="toys-button settings-tab" />
+                    <ui:Button name="SoundTab" text="Sound" class="toys-button settings-tab" />
+                    <ui:Button name="GraphicsTab" text="Graphics" class="toys-button settings-tab" />
+                    <ui:Button name="FriendsTab" text="Friends" class="toys-button settings-tab" />
+                </ui:VisualElement>
+                <ui:ScrollView class="settings-content" mode="Vertical">
+                    <ui:VisualElement name="AccountsPage">
+                        <ui:Label text="Your account" class="toys-heading" />
+                        <ui:Label name="AccountNickname" class="toys-heading" />
+                        <ui:Label name="AccountType" class="toys-caption" />
+                        <ui:Label text="Player ID" class="toys-caption" />
+                        <ui:Label name="AccountPlayerId" class="settings-player-id" selectable="true" />
+                        <ui:Button name="CopyPlayerIdButton" text="Copy Player ID" class="toys-button" />
+                        <ui:Button name="LinkGooglePlayButton" text="Link Google Play" class="toys-button" />
+                        <ui:Button name="ExitFromSettingsButton" text="Exit Game" class="toys-button" />
+                        <ui:Button name="OpenDeleteButton" text="Delete Player Data" class="toys-button toys-danger" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ControlsPage" class="toys-hidden" />
+                    <ui:VisualElement name="SoundPage" class="toys-hidden">
+                        <ui:Label text="Sound" class="toys-heading" />
+                        <ui:Slider name="MasterVolume" label="Master" low-value="0" high-value="1" value="1" class="settings-slider" />
+                        <ui:Label name="MasterVolumeValue" class="toys-caption" />
+                        <ui:Slider name="MusicVolume" label="Music" low-value="0" high-value="1" value="1" class="settings-slider" />
+                        <ui:Label name="MusicVolumeValue" class="toys-caption" />
+                        <ui:Slider name="SfxVolume" label="SFX" low-value="0" high-value="1" value="1" class="settings-slider" />
+                        <ui:Label name="SfxVolumeValue" class="toys-caption" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="GraphicsPage" class="toys-hidden">
+                        <ui:Label text="Graphics quality" class="toys-heading" />
+                        <ui:Label text="Changes apply immediately and are saved on this device." class="toys-caption" />
+                        <ui:Button name="GraphicsLow" text="Low" class="toys-button" />
+                        <ui:Button name="GraphicsNormal" text="Normal" class="toys-button" />
+                        <ui:Button name="GraphicsHigh" text="High" class="toys-button" />
+                        <ui:Button name="GraphicsUltra" text="Ultra" class="toys-button" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="FriendsPage" class="toys-hidden">
+                        <ui:Label text="Friends" class="toys-heading" />
+                        <ui:Label name="FriendsPlayerId" class="toys-caption" selectable="true" />
+                        <ui:Label text="Share your player ID, or send a request using theirs." class="toys-caption" />
+                        <ui:TextField name="FriendPlayerId" placeholder-text="10-digit Player ID" max-length="10" class="toys-field" />
+                        <ui:Button name="SendFriendRequestButton" text="Send Friend Request" class="toys-button" />
+                        <ui:Button name="RefreshFriendsButton" text="Refresh" class="toys-button" />
+                        <ui:VisualElement name="FriendsList" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:Label name="SettingsStatus" class="toys-status" />
+        </ui:VisualElement>
+        <ui:VisualElement name="DeleteConfirmationOverlay" class="settings-overlay delete-overlay toys-hidden">
+            <ui:VisualElement class="toys-card delete-card">
+                <ui:Label text="Delete your account?" class="toys-title" />
+                <ui:Label text="This permanently deletes your account, profile, saved player data, and friendships. This cannot be undone. Type CONFIRM to continue." class="toys-caption" />
+                <ui:TextField name="DeleteConfirmationText" max-length="7" class="toys-field" />
+                <ui:Label name="DeleteStatus" class="toys-status" />
+                <ui:Button name="ConfirmDeleteButton" text="Permanently Delete" class="toys-button toys-danger" />
+                <ui:Button name="CancelDeleteButton" text="Cancel" class="toys-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

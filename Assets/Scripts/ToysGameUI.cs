@@ -58,6 +58,8 @@ public sealed class ToysGameUI : MonoBehaviour
     {
         if (!matchInterface && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            var toolkitLobby = FindAnyObjectByType<LobbyScreen>();
+            if (toolkitLobby && toolkitLobby.isActiveAndEnabled) return;
             var selected = EventSystem.current ? EventSystem.current.currentSelectedGameObject : null;
             var input = selected ? selected.GetComponent<TMP_InputField>() : null;
             if (input && input.isFocused) input.DeactivateInputField();

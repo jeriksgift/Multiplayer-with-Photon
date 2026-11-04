@@ -21,6 +21,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        if (!AccountSession.Instance || !AccountSession.Instance.IsReady)
+        {
+            enabled = false;
+            if (lobbyPanel) lobbyPanel.SetActive(false);
+            AccountSession.Instance?.RequireLogin();
+            return;
+        }
+        PhotonNetwork.AuthValues = new AuthenticationValues(AccountSession.Instance.PlayerId);
+        PhotonNetwork.NickName = AccountSession.Instance.Profile.nickname;
         // Set before connecting: Photon requires AutomaticallySyncScene on every client
         // so remote clients follow the master's PhotonNetwork.LoadLevel(). Clients that
         // leave it false stay in the lobby when the host starts the game.
@@ -122,27 +131,27 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void EnterRoom(int mode)
     {
-        if (nickNameInputField == null || roomNameInputField == null) return;
-        var nicknameInput = nickNameInputField.GetComponentInParent<TMP_InputField>();
-        string nickname = nicknameInput ? nicknameInput.text : nickNameInputField.text;
-        if (!TryEnterRoom(nickname, roomNameInputField.text, mode))
+        if (roomNameInputField == null) return;
+        if (!TryEnterRoom(roomNameInputField.text, mode))
         {
-            if (NormalizeEntry(nickname).Length < 2 && nicknameInput) nicknameInput.ActivateInputField();
-            else if (string.IsNullOrWhiteSpace(NormalizeEntry(roomNameInputField.text))) roomNameInputField.ActivateInputField();
+            if (string.IsNullOrWhiteSpace(NormalizeEntry(roomNameInputField.text))) roomNameInputField.ActivateInputField();
         }
     }
 
     public static string NormalizeEntry(string value) => (value ?? string.Empty).Replace("\u200B", "").Trim();
 
-    public bool TryEnterRoom(string nickname, string roomName, int mode = 0)
+    [System.Obsolete("The saved profile supplies the nickname. Use TryEnterRoom(roomName, mode).")]
+    public bool TryEnterRoom(string nickname, string roomName, int mode = 0) => TryEnterRoom(roomName, mode);
+
+    public bool TryEnterRoom(string roomName, int mode = 0)
     {
-        nickname = NormalizeEntry(nickname);
-        roomName = NormalizeEntry(roomName);
-        if (nickname.Length < 2)
+        if (!AccountSession.Instance || !AccountSession.Instance.IsReady)
         {
-            SetLobbyStatus("Enter a player name with at least 2 characters.");
+            AccountSession.Instance?.RequireLogin();
             return false;
         }
+        string nickname = AccountSession.Instance.Profile.nickname;
+        roomName = NormalizeEntry(roomName);
         if (string.IsNullOrWhiteSpace(roomName))
         {
             SetLobbyStatus("ROOM NAME REQUIRED");

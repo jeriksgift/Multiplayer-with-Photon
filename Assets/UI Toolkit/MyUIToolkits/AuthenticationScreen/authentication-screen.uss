@@ -1,0 +1,8 @@
+.auth-screen { flex-grow: 1; background-color: rgba(0, 0, 0, 0.49); background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/AuthenticationScreen/bg.png"); -unity-background-scale-mode: scale-and-crop; align-items: flex-end; justify-content: center; padding: 110px 50px 150px; }
+.auth-card { width: 580px; max-width: 100%; }
+.auth-button { font-size: 32px; margin-top: 16px; margin-bottom: 16px; }
+.auth-divider { height: 3px; background-color: rgb(84, 84, 84); margin: 10px 20px; }
+.auth-brand { position: absolute; left: 30px; bottom: 20px; }
+.auth-game-title { font-size: 72px; margin-bottom: 14px; }
+.auth-clock { font-size: 38px; margin-left: 10px; }
+.auth-exit { position: absolute; right: 20px; top: 20px; font-size: 28px; }

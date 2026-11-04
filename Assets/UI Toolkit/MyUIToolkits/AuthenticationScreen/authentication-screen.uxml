@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="../Shared/account-theme.uss" />
+    <ui:Style src="authentication-screen.uss" />
+    <ui:VisualElement name="AuthenticationRoot" class="toys-ui auth-screen">
+        <ui:VisualElement class="toys-card auth-card">
+            <ui:VisualElement name="SignInPage">
+                <ui:Label text="Sign In / Sign Up" class="toys-title" />
+                <ui:Label text="Your next match starts here." class="toys-caption" />
+                <ui:Button name="GooglePlayButton" text="Google Play" class="toys-button auth-button" />
+                <ui:VisualElement class="auth-divider" />
+                <ui:Button name="GuestButton" text="Guest" class="toys-button auth-button" />
+                <ui:Label text="Link your guest account in Settings to keep it across devices." class="toys-caption" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ProfilePage" class="toys-hidden">
+                <ui:Label text="Make it yours" class="toys-title" />
+                <ui:Label text="Choose your nickname. You must be at least 16 to play." class="toys-caption" />
+                <ui:TextField name="ProfileNickname" label="Nickname" max-length="16" class="toys-field" />
+                <ui:IntegerField name="ProfileAge" label="Age" value="0" class="toys-field" />
+                <ui:Button name="CompleteProfileButton" text="Enter the Arena" class="toys-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ResumeDeletionPage" class="toys-hidden">
+                <ui:Label text="Finish deletion" class="toys-title" />
+                <ui:Label text="Account deletion was interrupted. Type CONFIRM to finish permanently deleting your account and data." class="toys-caption" />
+                <ui:TextField name="ResumeDeleteConfirmation" max-length="7" class="toys-field" />
+                <ui:Button name="ResumeDeleteButton" text="Permanently Delete" class="toys-button toys-danger" />
+            </ui:VisualElement>
+            <ui:Label name="AuthenticationStatus" class="toys-status" />
+            <ui:Button name="RetryLoginButton" text="Retry Connection" class="toys-button toys-hidden" />
+        </ui:VisualElement>
+        <ui:VisualElement class="auth-brand" picking-mode="Ignore">
+            <ui:Label text="Toys Death Match" class="auth-game-title" />
+            <ui:Label name="DateTimeLabel" class="auth-clock" />
+        </ui:VisualElement>
+        <ui:Button name="ExitGameButton" text="Exit" class="toys-button auth-exit" />
+    </ui:VisualElement>
+</ui:UXML>

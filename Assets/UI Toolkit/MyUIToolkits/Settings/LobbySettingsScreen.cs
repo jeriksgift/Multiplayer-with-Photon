@@ -33,6 +33,7 @@ public sealed class LobbySettingsScreen : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         overlay = root.Q("SettingsOverlay");
         status = root.Q<Label>("SettingsStatus");
+        ControlSettingsUI.Build(root.Q("ControlsPage"));
         matchHud = GetComponentInParent<GameHudScreen>();
         inMatch = matchHud != null;
         if (inMatch) { BindMatch(); return; }

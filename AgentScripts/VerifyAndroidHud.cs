@@ -2,4 +2,7 @@ var tree = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.Visu
 var root = tree.CloneTree();
 foreach (var name in new[] { "GameHud", "ScoreboardOverlay", "ScoreArea", "AmmoArea", "CloseScoreboard", "SettingsOverlay", "ControlsTab", "SoundTab", "GraphicsTab", "LeaveMatchButton" })
     if (UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.VisualElement>(root, name) == null) throw new System.Exception("Missing HUD element: " + name);
-return "HUD UXML imported; scoreboard, score touch target, ammo target and close button present.";
+var page = UnityEngine.UIElements.UQueryExtensions.Q<UnityEngine.UIElements.VisualElement>(root, "ControlsPage");
+ControlSettingsUI.Build(page);
+if (page.childCount != 24) throw new System.Exception("Expected sensitivity, four control sections and reset, got " + page.childCount);
+return "HUD and settings templates imported; score/reload targets, leave button, three gameplay tabs and 17 customization sliders verified.";

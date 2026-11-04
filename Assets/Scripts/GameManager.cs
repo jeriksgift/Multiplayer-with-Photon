@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
+        if (propertiesThatChanged.TryGetValue("livePlayerStats", out var live)) ReadLiveStats((string)live);
         if (propertiesThatChanged.ContainsKey("blueKills"))
             blueKills = (int)propertiesThatChanged["blueKills"];
         if (propertiesThatChanged.ContainsKey("redKills"))
@@ -159,7 +160,31 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         props["redKills"] = redKills;
         props["remainingTime"] = remainingTime;
         props["matchEnded"] = matchEnded;
+        props["livePlayerStats"] = SerializeLiveStats();
         PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+    }
+
+    private string SerializeLiveStats()
+    {
+        var rows = new System.Collections.Generic.List<string>();
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            playerKills.TryGetValue(player.ActorNumber, out int kills);
+            playerDamage.TryGetValue(player.ActorNumber, out float damage);
+            rows.Add(player.ActorNumber + ":" + kills + ":" + damage.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+        return string.Join(";", rows);
+    }
+
+    private void ReadLiveStats(string value)
+    {
+        foreach (string row in value.Split(';'))
+        {
+            var fields = row.Split(':');
+            if (fields.Length != 3 || !int.TryParse(fields[0], out int actor)) continue;
+            if (int.TryParse(fields[1], out int kills)) playerKills[actor] = kills;
+            if (float.TryParse(fields[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float damage)) playerDamage[actor] = damage;
+        }
     }
 
     private IEnumerator MasterTimerLoop()
@@ -231,6 +256,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         if (!playerDamage.ContainsKey(shooterActorNumber)) playerDamage[shooterActorNumber] = 0f;
         playerDamage[shooterActorNumber] += damage;
         if (killed) ProcessKill(shooterActorNumber);
+        else SyncScoresToRoom();
     }
 
     public static void RecordHit(int shooterActorNumber, float damage, bool killed)

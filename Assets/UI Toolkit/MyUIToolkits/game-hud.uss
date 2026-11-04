@@ -56,3 +56,9 @@
 .touch-sprint { left: 8%; bottom: 34%; }
 .touch-jump { right: 5%; bottom: 34%; }
 .touch-fire { right: 17%; bottom: 19%; width: 160px; height: 160px; border-radius: 80px; }
+.scoreboard-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,.85); justify-content: center; align-items: center; }
+.scoreboard-card { width: 960px; max-width: 90%; max-height: 85%; padding: 28px; }
+.scoreboard-title { font-size: 34px; }
+.scoreboard-heading { font-size: 25px; margin-top: 24px; margin-bottom: 12px; }
+.scoreboard-row { flex-direction: row; padding: 12px; background-color: rgb(35,35,35); margin-bottom: 6px; font-size: 26px; }
+.scoreboard-name { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; }

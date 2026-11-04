@@ -1,6 +1,7 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 [DefaultExecutionOrder(-10)]
 public sealed class GameHudScreen : MonoBehaviour
@@ -17,6 +18,10 @@ public sealed class GameHudScreen : MonoBehaviour
     private Label ammoValue, ammoStatus;
     private MobileGameControls mobileControls;
     public bool IsPanelOpen { get; set; }
+    private bool scoreboardOpen;
+    private CursorLockMode previousLock;
+    private bool previousVisible;
+    private float nextScoreboardRefresh;
 
     private void Start()
     {
@@ -33,6 +38,11 @@ public sealed class GameHudScreen : MonoBehaviour
         menuButton.clicked += OpenMenu;
         GetComponent<InputManager>().Hud = this;
         mobileControls = new MobileGameControls(root, GetComponent<InputManager>());
+        root.Q("ScoreArea").pickingMode = PickingMode.Position;
+        root.Q("ScoreArea").RegisterCallback<PointerDownEvent>(OpenScoreboard);
+        root.Q("ScoreboardOverlay").pickingMode = PickingMode.Position;
+        root.Q<Button>("CloseScoreboard").pickingMode = PickingMode.Position;
+        root.Q<Button>("CloseScoreboard").clicked += CloseScoreboard;
         blueScore = root.Q<Label>("BlueScore");
         redScore = root.Q<Label>("RedScore");
         timer = root.Q<Label>("MatchTimer");
@@ -65,7 +75,47 @@ public sealed class GameHudScreen : MonoBehaviour
 
     private void OpenMenu() { if (menu) menu.ToggleExit(); }
     private void Reload(PointerDownEvent evt) { if (weapon) weapon.Reload(); evt.StopPropagation(); }
-    private void Update() { mobileControls?.Tick(); }
+    private void Update()
+    {
+        mobileControls?.Tick();
+        if (scoreboardOpen && Time.unscaledTime >= nextScoreboardRefresh) { RefreshScoreboard(); nextScoreboardRefresh = Time.unscaledTime + .25f; }
+    }
+    private void OpenScoreboard(PointerDownEvent evt)
+    {
+        evt.StopPropagation();
+        if (IsPanelOpen || (menu && menu.IsExitOpen)) return;
+        previousLock = Cursor.lockState; previousVisible = Cursor.visible;
+        scoreboardOpen = IsPanelOpen = true;
+        mobileControls.Reset();
+        Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+        root.Q("ScoreboardOverlay").RemoveFromClassList("hud-hidden");
+        RefreshScoreboard();
+    }
+    public void CloseScoreboard()
+    {
+        if (!scoreboardOpen) return;
+        scoreboardOpen = IsPanelOpen = false;
+        root.Q("ScoreboardOverlay").AddToClassList("hud-hidden");
+        Cursor.lockState = previousLock; Cursor.visible = previousVisible;
+    }
+    private void RefreshScoreboard()
+    {
+        var rows = root.Q<ScrollView>("ScoreboardRows"); rows.Clear();
+        var game = GameManager.Instance;
+        foreach (var team in new[] { DataTypes.Team.Blue, DataTypes.Team.Red })
+        {
+            var heading = new Label(team.ToString().ToUpperInvariant() + " TEAM     KILLS / DAMAGE"); heading.AddToClassList("scoreboard-heading"); rows.Add(heading);
+            foreach (var player in PhotonNetwork.PlayerList)
+            {
+                if (RoomManager.GetTeam(player) != team) continue;
+                int kills = 0; float damage = 0;
+                if (game) { game.playerKills.TryGetValue(player.ActorNumber, out kills); game.playerDamage.TryGetValue(player.ActorNumber, out damage); }
+                var row = new VisualElement(); row.AddToClassList("scoreboard-row");
+                var name = new Label(player.NickName) { enableRichText = false }; name.AddToClassList("scoreboard-name");
+                row.Add(name); row.Add(new Label(kills + " / " + Mathf.FloorToInt(damage))); rows.Add(row);
+            }
+        }
+    }
     private void OnApplicationFocus(bool focused) { if (!focused) mobileControls?.Reset(); }
     private void OnApplicationPause(bool paused) { if (paused) mobileControls?.Reset(); }
     private void OnDisable() { mobileControls?.Reset(); }

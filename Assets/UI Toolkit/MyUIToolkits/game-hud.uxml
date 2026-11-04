@@ -7,7 +7,7 @@
                 <ui:Label name="LocalTeam" text="TEAM DEATHMATCH" class="hud-caption"/>
             </ui:VisualElement>
             <ui:VisualElement class="score-area">
-                <ui:VisualElement class="hud-panel score-panel">
+                <ui:VisualElement name="ScoreArea" class="hud-panel score-panel">
                     <ui:VisualElement class="team-score blue-score">
                         <ui:Label text="BLUE" class="hud-caption"/>
                         <ui:Label name="BlueScore" text="0" class="score-value"/>
@@ -47,6 +47,13 @@
                 </ui:VisualElement>
                 <ui:Label name="AmmoValue" text="07 / ∞" class="ammo-value"/>
                 <ui:Label name="AmmoStatus" text="R / RELOAD" class="hud-caption"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ScoreboardOverlay" class="scoreboard-overlay hud-hidden">
+            <ui:VisualElement class="hud-panel scoreboard-card">
+                <ui:Label text="MATCH PLAYERS" class="scoreboard-title" />
+                <ui:Button name="CloseScoreboard" text="Close" class="hud-menu" />
+                <ui:ScrollView name="ScoreboardRows" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

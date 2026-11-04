@@ -23,7 +23,7 @@ public sealed class MobileGameControls : IDisposable
         var sprintButton = Add("Sprint", "SPRINT", "touch-sprint");
         var jumpButton = Add("Jump", "JUMP", "touch-jump");
         var fireButton = Add("Fire", "FIRE", "touch-fire");
-        fireButton.RegisterCallback<PointerDownEvent>(e => { if (!input.IsGameplayBlocked) input.TouchFireFrame = Time.frameCount; e.StopPropagation(); });
+        fireButton.RegisterCallback<PointerDownEvent>(e => { if (!input.IsGameplayBlocked) input.TouchFireRequested = true; e.StopPropagation(); });
         stick.RegisterCallback<PointerDownEvent>(e => { if (movePointer >= 0 || input.IsGameplayBlocked) return; movePointer = e.pointerId; stick.CapturePointer(e.pointerId); Move(e.position); e.StopPropagation(); });
         stick.RegisterCallback<PointerMoveEvent>(e => { if (e.pointerId == movePointer) Move(e.position); });
         stick.RegisterCallback<PointerUpEvent>(e => { if (e.pointerId == movePointer) { stick.ReleasePointer(e.pointerId); ClearMove(); } });
@@ -38,7 +38,7 @@ public sealed class MobileGameControls : IDisposable
         sprintButton.RegisterCallback<PointerUpEvent>(e => { if (e.pointerId != sprintPointer) return; sprintButton.ReleasePointer(e.pointerId); sprintPointer = -1; sprint = false; });
         sprintButton.RegisterCallback<PointerCaptureOutEvent>(e => { sprintPointer = -1; sprint = false; });
         sprintButton.RegisterCallback<PointerCancelEvent>(e => { sprintPointer = -1; sprint = false; });
-        jumpButton.RegisterCallback<PointerDownEvent>(e => { if (!input.IsGameplayBlocked) input.TouchJumpFrame = Time.frameCount; e.StopPropagation(); });
+        jumpButton.RegisterCallback<PointerDownEvent>(e => { if (!input.IsGameplayBlocked) input.TouchJumpRequested = true; e.StopPropagation(); });
         layer.style.display = Application.isMobilePlatform ? DisplayStyle.Flex : DisplayStyle.None;
         layer.RegisterCallback<GeometryChangedEvent>(OnGeometry);
         ControlSettingsUI.Changed += ApplyLayout;
@@ -84,7 +84,7 @@ public sealed class MobileGameControls : IDisposable
         if (lookPointer >= 0) look.ReleasePointer(lookPointer);
         if (sprintPointer >= 0) controls["Sprint"].ReleasePointer(sprintPointer);
         sprintPointer = -1; sprint = false; ClearMove(); ClearLook(); input.TouchSprint = false;
-        input.TouchJumpFrame = input.TouchFireFrame = -1;
+        input.TouchJumpRequested = input.TouchFireRequested = false;
     }
     void OnGeometry(GeometryChangedEvent evt) { ApplyLayout(); }
     public void ApplyLayout()

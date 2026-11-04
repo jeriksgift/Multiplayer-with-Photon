@@ -12,13 +12,13 @@ public class InputManager : MonoBehaviour
     public Vector2 TouchMove { get; set; }
     public Vector2 TouchLook { get; set; }
     public bool TouchSprint { get; set; }
-    public int TouchJumpFrame { get; set; } = -1;
-    public int TouchFireFrame { get; set; } = -1;
+    public bool TouchJumpRequested { get; set; }
+    public bool TouchFireRequested { get; set; }
     public Vector2 MoveValue => Application.isMobilePlatform ? TouchMove : move.ReadValue<Vector2>() + TouchMove;
     public Vector2 LookValue => Application.isMobilePlatform ? TouchLook : look.ReadValue<Vector2>() + TouchLook;
     public bool SprintHeld => TouchSprint || sprint.IsPressed();
-    public bool JumpPressed => TouchJumpFrame == Time.frameCount || jump.WasPressedThisFrame();
-    public bool FirePressed => TouchFireFrame == Time.frameCount || (!Application.isMobilePlatform && fire.WasPressedThisFrame());
+    public bool JumpPressed { get { bool touch = TouchJumpRequested; TouchJumpRequested = false; return touch || jump.WasPressedThisFrame(); } }
+    public bool FirePressed { get { bool touch = TouchFireRequested; TouchFireRequested = false; return touch || (!Application.isMobilePlatform && fire.WasPressedThisFrame()); } }
     public bool IsGameplayBlocked => (gameUI && gameUI.IsExitOpen) || (Hud && Hud.IsPanelOpen) ||
         (GameManager.Instance && GameManager.Instance.matchEnded);
 

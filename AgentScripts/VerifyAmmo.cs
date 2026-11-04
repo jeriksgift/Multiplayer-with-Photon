@@ -71,7 +71,7 @@ public static class VerifyAmmo
                 int shots = player.Shots;
                 for (int i = 0; i < 7; i++) await Fire();
                 Check(weapon.AmmoInMagazine == 0 && weapon.IsReloading && player.Shots == shots + 7, "Seven shots did not empty/start reload");
-                Check(value.text == "00 / 07" && status.text == "RELOADING...", "Reload HUD not live");
+                Check(value.text == "00 / 07" && root.Q("ReloadIcon").ClassListContains("reload-active"), "Reload HUD not live");
                 await Fire(); Check(player.Shots == shots + 7 && weapon.AmmoInMagazine == 0, "Eighth shot fired during reload");
                 await Task.Delay(1600);
                 Check(weapon.AmmoInMagazine == 7 && !weapon.IsReloading && value.text == "07 / 07", "Automatic reload failed");

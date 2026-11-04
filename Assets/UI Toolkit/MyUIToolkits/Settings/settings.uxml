@@ -5,7 +5,7 @@
         <ui:VisualElement name="SettingsCard" class="toys-card settings-card">
             <ui:VisualElement class="toys-row">
                 <ui:Label text="Settings" class="toys-title toys-spacer" />
-                <ui:Button name="CloseSettingsButton" text="Close" class="toys-button settings-close" />
+                <ui:Button name="CloseSettingsButton" tooltip="Close settings" class="toys-button settings-close"><ui:VisualElement picking-mode="Ignore" class="settings-close-icon" /></ui:Button>
             </ui:VisualElement>
             <ui:VisualElement class="settings-body">
                 <ui:VisualElement class="settings-tabs">

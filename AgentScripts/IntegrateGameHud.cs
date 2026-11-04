@@ -78,8 +78,8 @@ public static class IntegrateGameHud
         Check(root.Q<Label>("MatchTimer").text == "08:07", "Timer binding failed");
         Check(root.Q<Label>("HealthValue").text == "85", "Health binding failed");
         Check(Mathf.Approximately(root.Q("HealthFill").style.width.value.value, 85), "Health fill failed");
-        Check(root.Q<Label>("ScoreTarget").text == "FIRST TO " + GameManager.WIN_SCORE, "Target incorrect");
-        var button = root.Q<Button>("MenuButton");
+        Check(root.Q<Label>("ScoreTarget").text == GameManager.WIN_SCORE.ToString(), "Target incorrect");
+        var button = root.Q<Button>("LeaveMatchButton");
         button.Focus(); using (var evt = NavigationSubmitEvent.GetPooled()) button.SendEvent(evt);
         Check(player.GetComponent<ToysGameUI>().IsExitOpen, "Menu button failed");
         player.GetComponent<ToysGameUI>().CancelExit();

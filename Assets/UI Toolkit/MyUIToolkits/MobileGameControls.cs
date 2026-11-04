@@ -47,7 +47,12 @@ public sealed class MobileGameControls : IDisposable
     VisualElement Add(string name, string text, string position)
     {
         var element = new VisualElement { name = name }; element.AddToClassList("touch-control"); element.AddToClassList(position);
-        if (text.Length > 0) element.Add(new Label(text) { pickingMode = PickingMode.Ignore });
+        element.tooltip = text;
+        if (text.Length > 0)
+        {
+            var icon = new VisualElement { pickingMode = PickingMode.Ignore };
+            icon.AddToClassList("control-icon"); icon.AddToClassList("icon-" + name.ToLowerInvariant()); element.Add(icon);
+        }
         layer.Add(element); controls.Add(name, element); return element;
     }
     void Move(Vector2 position)

@@ -66,7 +66,7 @@ public sealed class GameHudScreen : MonoBehaviour
         SetAmmo();
         root.Q<Label>("RoomName").text = PhotonNetwork.CurrentRoom != null ? PhotonNetwork.CurrentRoom.Name : "Toys Death Match";
         root.Q<Label>("LocalTeam").text = RoomManager.GetLocalTeam() == DataTypes.Team.Blue ? "BLUE TEAM / DEATHMATCH" : "RED TEAM / DEATHMATCH";
-        root.Q<Label>("ScoreTarget").text = "FIRST TO " + GameManager.WIN_SCORE;
+        root.Q<Label>("ScoreTarget").text = GameManager.WIN_SCORE.ToString();
         health = GetComponent<HealthComponent>();
         if (health) health.HealthChanged += SetHealth;
         GameManager.OnScoreChanged += SetScores;
@@ -137,7 +137,8 @@ public sealed class GameHudScreen : MonoBehaviour
     {
         if (!weapon) return;
         ammoValue.text = weapon.AmmoInMagazine.ToString("00") + " / " + WeaponSystem.MagazineSize.ToString("00");
-        ammoStatus.text = weapon.IsReloading ? "RELOADING..." : Application.isMobilePlatform ? "TAP / RELOAD" : "R / RELOAD";
+        ammoStatus.text = string.Empty;
+        root.Q("ReloadIcon").EnableInClassList("reload-active", weapon.IsReloading);
         ammoValue.EnableInClassList("ammo-empty", weapon.AmmoInMagazine == 0);
     }
     private void SetScores(int blue, int red) { blueScore.text = blue.ToString(); redScore.text = red.ToString(); }

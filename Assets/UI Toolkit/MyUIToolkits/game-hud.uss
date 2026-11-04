@@ -8,7 +8,7 @@
 .hud-top, .hud-bottom { flex-direction: row; justify-content: space-between; align-items: flex-start; }
 .hud-top { flex-grow: 1; }
 .room-info { width: 360px; padding: 16px 20px; background-color: rgb(18, 18, 18); border-radius: 12px; }
-.room-name { font-size: 28px; overflow: hidden; text-overflow: ellipsis; margin-bottom: 10px; -unity-font-style: bold; }
+.room-name { font-size: 22px; overflow: hidden; text-overflow: ellipsis; -unity-font-style: bold; }
 .hud-caption { font-size: 22px; -unity-font-style: bold; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); }
 .hud-panel, .hud-menu {
     background-color: rgb(18, 18, 18);
@@ -22,8 +22,8 @@
 .score-area { position: absolute; left: 0; right: 0; align-items: center; }
 .score-panel { width: 560px; height: 128px; flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 28px; }
 .team-score { width: 94px; align-items: center; }
-.blue-score { border-bottom-width: 3px; border-bottom-color: rgb(156, 177, 191); }
-.red-score { border-bottom-width: 3px; border-bottom-color: rgb(204, 150, 142); }
+.blue-score { border-bottom-width: 4px; border-bottom-color: rgb(95, 170, 255); }
+.red-score { border-bottom-width: 4px; border-bottom-color: rgb(255, 110, 110); }
 .score-value { font-size: 42px; -unity-font-style: bold; }
 .timer-group { align-items: center; }
 .timer-value { font-size: 36px; -unity-font-style: bold; }
@@ -35,7 +35,7 @@
 .health-value { font-size: 40px; -unity-font-style: bold; }
 .health-track { height: 6px; background-color: rgb(65, 65, 62); }
 .health-fill { height: 100%; width: 100%; background-color: rgb(255, 255, 255); }
-.ammo-panel { margin-left: auto; margin-bottom: 70px; width: 256px; padding: 16px 24px; }
+.ammo-panel { margin-left: auto; margin-bottom: 100px; width: 256px; padding: 16px 24px; }
 .leave-match { position: absolute; right: 0; bottom: 0; }
 .match-settings-host { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
 .ammo-heading { flex-direction: row; justify-content: space-between; align-items: center; }
@@ -64,3 +64,20 @@
 .scoreboard-heading { font-size: 25px; margin-top: 24px; margin-bottom: 12px; }
 .scoreboard-row { flex-direction: row; padding: 12px; background-color: rgb(35,35,35); margin-bottom: 6px; font-size: 26px; }
 .scoreboard-name { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; }
+.hud-icon-button { width: 84px; height: 84px; padding: 16px; align-items: center; justify-content: center; }
+.hud-action-icon { width: 44px; height: 44px; }
+.hud-small-icon { width: 28px; height: 28px; }
+.control-icon { width: 48%; height: 48%; }
+.score-target-row { flex-direction: row; align-items: center; }
+.score-target-row .hud-small-icon { margin-right: 8px; width: 22px; height: 22px; }
+.reload-active { -unity-background-image-tint-color: rgb(255, 196, 95); }
+.icon-fire { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/fire.svg"); }
+.icon-jump { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/jump.svg"); }
+.icon-sprint { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/sprint.svg"); }
+.icon-settings { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/settings.svg"); }
+.icon-leave { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/leave.svg"); }
+.icon-health { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/health.svg"); }
+.icon-ammo { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/ammo.svg"); }
+.icon-reload { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/reload.svg"); }
+.icon-close { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/close.svg"); }
+.icon-target { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/target.svg"); }

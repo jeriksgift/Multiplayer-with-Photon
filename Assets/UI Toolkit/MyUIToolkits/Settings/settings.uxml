@@ -24,7 +24,6 @@
                         <ui:Label name="AccountPlayerId" class="settings-player-id" selectable="true" />
                         <ui:Button name="CopyPlayerIdButton" text="Copy Player ID" class="toys-button" />
                         <ui:Button name="LinkGooglePlayButton" text="Link Google Play" class="toys-button" />
-                        <ui:Button name="ExitFromSettingsButton" text="Exit Game" class="toys-button" />
                         <ui:Button name="OpenDeleteButton" text="Delete Player Data" class="toys-button toys-danger" />
                     </ui:VisualElement>
                     <ui:VisualElement name="ControlsPage" class="toys-hidden" />
@@ -56,6 +55,7 @@
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
+            <ui:Button name="ExitFromSettingsButton" text="Exit Game" class="toys-button" />
             <ui:Label name="SettingsStatus" class="toys-status" />
         </ui:VisualElement>
         <ui:VisualElement name="DeleteConfirmationOverlay" class="settings-overlay delete-overlay toys-hidden">

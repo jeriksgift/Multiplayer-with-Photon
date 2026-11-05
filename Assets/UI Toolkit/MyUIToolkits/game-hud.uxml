@@ -31,7 +31,6 @@
         </ui:VisualElement>
         <ui:Label name="RespawnStatus" text="RESPAWNING" class="respawn-status hud-hidden"/>
         <ui:VisualElement class="hud-bottom">
-            <ui:Button name="LeaveMatchButton" tooltip="Leave match" class="hud-menu hud-icon-button leave-match"><ui:VisualElement picking-mode="Ignore" class="hud-action-icon icon-leave" /></ui:Button>
             <ui:VisualElement class="hud-panel health-panel">
                 <ui:VisualElement class="health-heading">
                     <ui:VisualElement class="hud-small-icon icon-health" />

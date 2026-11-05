@@ -4,6 +4,16 @@ The Unity implementation is installed. `Assets/Scenes/Login.unity` is the first 
 
 The project is already linked to UGS project `2aabea99-63bd-4a65-a55e-23bbbb652b6e`. The local config is `Assets/Resources/AccountServicesConfig.asset`, with environment `production`. Use the same project and environment for all services and Cloud Code scripts.
 
+## Authentication repair verified 2026-11-05
+
+The login error `Account setup is currently unavailable` was caused by a missing `PlayerIdDirectory` Cloud Code script, not by anonymous authentication. Production only had `CompletePlayerProfile` published. The existing `PlayerIdDirectory.js` was deployed and published as version 1 with its three parameter definitions, and the missing private `toys-player-id-registry/allocator` item was initialized. Existing counters must never be reset.
+
+Live Editor verification restored the cached account, preserved its completed profile, assigned public ID `1000000000`, and automatically entered Lobby with `AccountSession.IsReady == true`. A second Play session restored the same account and public ID successfully. All 15 account/ID Cloud Code tests passed. This is a backend repair, so existing builds using this project/environment can use Retry Login without a rebuild.
+
+`AgentScripts/RepairAccountBackend.cs` provides read-only `Inspect` and guarded `Repair` entry points through `unity command script run`. It uses the Editor's service authentication without printing or storing credentials, targets this production project explicitly, and refuses to initialize a missing allocator if a directory script already exists. `AgentScripts/VerifyAuthenticationRepair.cs` checks the running Login/Lobby session and confirms frames advance.
+
+Google Play still has placeholder configuration and requires the provider/plugin/OAuth setup below. `DeletePlayerData` is also not deployed; complete that setup before testing account deletion. A separate Photon connection/TLS failure was observed after the account successfully reached Lobby; authentication does not resolve that network issue.
+
 ## 1. Enable Unity Gaming Services
 
 1. Open your project in the [Unity Dashboard](https://cloud.unity.com/).

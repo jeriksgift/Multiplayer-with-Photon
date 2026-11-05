@@ -36,7 +36,6 @@
 .health-track { height: 6px; background-color: rgb(65, 65, 62); }
 .health-fill { height: 100%; width: 100%; background-color: rgb(255, 255, 255); }
 .ammo-panel { margin-left: auto; margin-bottom: 100px; width: 256px; padding: 16px 24px; }
-.leave-match { position: absolute; right: 0; bottom: 0; }
 .match-settings-host { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
 .ammo-heading { flex-direction: row; justify-content: space-between; align-items: center; }
 .ammo-reserve { font-size: 20px; -unity-font-definition: url("project://database/Assets/UI/ToysDeathMatch/Fonts/Body.ttf"); -unity-font-style: bold; }

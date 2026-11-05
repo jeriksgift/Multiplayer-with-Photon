@@ -41,8 +41,6 @@ public sealed class GameHudScreen : MonoBehaviour
         root.Q("MatchSettingsHost").pickingMode = PickingMode.Ignore;
         settings = document.GetComponent<LobbySettingsScreen>();
         if (!settings) settings = document.gameObject.AddComponent<LobbySettingsScreen>();
-        root.Q<Button>("LeaveMatchButton").pickingMode = PickingMode.Position;
-        root.Q<Button>("LeaveMatchButton").clicked += LeaveMatch;
         GetComponent<InputManager>().Hud = this;
         mobileControls = new MobileGameControls(root, GetComponent<InputManager>());
         root.Q("ScoreArea").pickingMode = PickingMode.Position;
@@ -81,7 +79,6 @@ public sealed class GameHudScreen : MonoBehaviour
     }
 
     private void OpenMenu() { if (settings) settings.Open(); }
-    private void LeaveMatch() { if (menu && !IsPanelOpen) menu.ToggleExit(); }
     public bool ClosePanel()
     {
         if (scoreboardOpen) { CloseScoreboard(); return true; }

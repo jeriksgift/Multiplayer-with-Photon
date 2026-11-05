@@ -140,6 +140,8 @@ public sealed class LobbySettingsScreen : MonoBehaviour
     private void BindMatch()
     {
         foreach (string tab in new[] { "Accounts", "Friends" }) Show(tab + "Tab", false);
+        root.Q<Button>("ExitFromSettingsButton").text = "Leave Match";
+        Bind("ExitFromSettingsButton", () => { Close(); GetComponentInParent<ToysGameUI>().ShowExit(); });
         Bind("CloseSettingsButton", Close);
         foreach (string tab in new[] { "Controls", "Sound", "Graphics" }) { string name = tab; Bind(tab + "Tab", () => SelectTab(name)); }
         foreach (string channel in new[] { "Master", "Music", "Sfx" })

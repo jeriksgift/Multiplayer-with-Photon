@@ -33,7 +33,7 @@ public sealed class LobbySettingsScreen : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         overlay = root.Q("SettingsOverlay");
         status = root.Q<Label>("SettingsStatus");
-        ControlSettingsUI.Build(root.Q("ControlsPage"));
+        ControlSettingsUI.Build(root.Q("ControlsPage"), root);
         matchHud = GetComponentInParent<GameHudScreen>();
         inMatch = matchHud != null;
         if (inMatch) { BindMatch(); return; }
@@ -67,6 +67,7 @@ public sealed class LobbySettingsScreen : MonoBehaviour
 
     private void OnDisable()
     {
+        ControlSettingsUI.CloseEditor(root);
         generation++;
         foreach (var action in unbind) action();
         unbind.Clear();
@@ -111,6 +112,7 @@ public sealed class LobbySettingsScreen : MonoBehaviour
 
     public void Close()
     {
+        if (ControlSettingsUI.CloseEditor(root)) return;
         if (inMatch)
         {
             Show("SettingsOverlay", false); matchHud.IsPanelOpen = false;
@@ -134,6 +136,7 @@ public sealed class LobbySettingsScreen : MonoBehaviour
             root.Q<Button>(tab + "Tab").EnableInClassList("toys-button--selected", tab == selected);
         }
         status.text = string.Empty;
+        if (selected == "Controls") ControlSettingsUI.OpenEditor(root);
         if (selected == "Friends") RefreshFriends();
     }
 

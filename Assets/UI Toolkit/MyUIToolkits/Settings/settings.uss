@@ -21,3 +21,26 @@
 .settings-friend-actions > .toys-button { font-size: 21px; margin-right: 12px; }
 .delete-overlay { background-color: rgba(0, 0, 0, 0.9); }
 .delete-card { width: 720px; max-width: 100%; background-color: rgb(18, 18, 18); border-width: 2px; border-color: rgb(244, 171, 121); }
+.layout-editor { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgb(26, 32, 38); }
+.layout-canvas { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.layout-toolbar { position: absolute; left: 3%; right: 3%; top: 3%; flex-direction: row; align-items: center; background-color: rgba(0,0,0,.85); padding: 8px 18px; border-radius: 12px; }
+.layout-toolbar .toys-button { margin-left: 12px; font-size: 22px; }
+.layout-hint { flex-grow: 1; font-size: 24px; color: white; }
+.layout-inspector { position: absolute; left: 30%; top: 18%; width: 40%; max-width: 640px; background-color: rgba(0,0,0,.9); padding: 16px 24px; border-radius: 12px; }
+.layout-inspector .settings-slider > .unity-base-field__label { min-width: 150px; font-size: 22px; }
+.layout-inspector .unity-text-field { min-width: 64px; color: white; }
+.layout-inspector .unity-base-text-field__input { background-color: rgb(42,42,42); color: white; border-width: 0; }
+.layout-control { position: absolute; align-items: center; justify-content: center; background-color: rgba(18,18,18,.65); border-radius: 500px; }
+.layout-joystick { border-width: 3px; border-color: rgba(255,255,255,.75); }
+.layout-stick-knob { width: 34.5%; height: 34.5%; background-color: rgba(255,255,255,.65); border-radius: 500px; }
+.layout-control-icon { width: 48%; height: 48%; }
+.layout-icon-sprint { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/sprint.svg"); }
+.layout-icon-jump { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/jump.svg"); }
+.layout-icon-fire { background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/fire.svg"); }
+.layout-selected { background-color: rgba(180,125,30,.65); }
+.layout-room, .layout-score, .layout-health, .layout-ammo { position: absolute; color: rgb(180,190,200); background-color: rgb(18,18,18); padding: 16px 24px; border-radius: 12px; font-size: 26px; }
+.layout-room { left: 3%; top: 15%; }
+.layout-score { left: 40%; top: 12%; }
+.layout-health { left: 43%; bottom: 4%; }
+.layout-ammo { right: 3%; bottom: 14%; }
+.layout-crosshair { position: absolute; left: 49.5%; top: 48%; font-size: 36px; color: white; }

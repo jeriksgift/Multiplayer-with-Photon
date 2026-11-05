@@ -96,21 +96,16 @@ public sealed class MobileGameControls : IDisposable
     {
         float width = layer.resolvedStyle.width, height = layer.resolvedStyle.height;
         if (float.IsNaN(width) || float.IsNaN(height) || width <= 0 || height <= 0) return;
-        Rect safe = Screen.safeArea;
-        float left = safe.xMin / Mathf.Max(1, Screen.width) * width;
-        float top = (Screen.height - safe.yMax) / Mathf.Max(1, Screen.height) * height;
-        float safeWidth = safe.width / Mathf.Max(1, Screen.width) * width;
-        float safeHeight = safe.height / Mathf.Max(1, Screen.height) * height;
+        Rect safe = ControlSettingsUI.SafeRect(width, height);
         foreach (var pair in controls)
         {
             string name = pair.Key; var element = pair.Value;
-            float baseSize = name == "Joystick" ? 220 : name == "Fire" ? 160 : 130;
-            float size = Mathf.Min(baseSize * ControlSettingsUI.Get(name, "size", 1), safeWidth * .4f, safeHeight * .4f);
-            Vector2 position = ControlSettingsUI.Position(name);
+            Rect rect = ControlSettingsUI.ControlRect(name, safe, ControlSettingsUI.Position(name), ControlSettingsUI.Get(name, "size", 1));
+            float size = rect.width;
             element.style.width = element.style.height = size;
             element.style.borderTopLeftRadius = element.style.borderTopRightRadius = element.style.borderBottomLeftRadius = element.style.borderBottomRightRadius = size * .5f;
-            element.style.left = left + Mathf.Clamp(safeWidth * position.x / 100 - size * .5f, 0, safeWidth - size);
-            element.style.top = top + Mathf.Clamp(safeHeight * position.y / 100 - size * .5f, 0, safeHeight - size);
+            element.style.left = rect.x;
+            element.style.top = rect.y;
             element.style.right = StyleKeyword.Auto; element.style.bottom = StyleKeyword.Auto;
             element.style.opacity = ControlSettingsUI.Get(name, "opacity", 1);
         }

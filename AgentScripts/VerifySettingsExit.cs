@@ -34,6 +34,7 @@ public static class VerifySettingsExit
         Cursor.visible = false;
         Click(root.Q<Button>("MenuButton"));
         await Task.Delay(100);
+        ControlSettingsUI.CloseEditor(root);
         var exit = root.Q<Button>("ExitFromSettingsButton");
         if (!settings.IsOpen || !hud.IsPanelOpen || exit.text != "Leave Match" || exit.resolvedStyle.display == DisplayStyle.None)
             throw new Exception("Settings exit is unavailable.");
@@ -46,6 +47,7 @@ public static class VerifySettingsExit
             throw new Exception("Cancel did not restore gameplay cursor.");
         settings.Open();
         if (!settings.IsOpen) throw new Exception("Settings cannot reopen after cancel.");
+        ControlSettingsUI.CloseEditor(root);
         settings.Close();
         return "No exit button in HUD. Settings > Leave Match opens confirmation; cancel restores gameplay and Settings can reopen.";
     }

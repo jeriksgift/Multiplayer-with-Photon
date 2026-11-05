@@ -63,7 +63,8 @@
 .scoreboard-heading { font-size: 25px; margin-top: 24px; margin-bottom: 12px; }
 .scoreboard-row { flex-direction: row; padding: 12px; background-color: rgb(35,35,35); margin-bottom: 6px; font-size: 26px; }
 .scoreboard-name { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; }
-.hud-icon-button { width: 84px; height: 84px; padding: 16px; align-items: center; justify-content: center; }
+.hud-icon-button { width: 84px; height: 84px; padding: 16px; align-items: center; justify-content: center; border-width: 0; }
+.touch-sprint, .touch-jump, .touch-fire { border-width: 0; }
 .hud-action-icon { width: 44px; height: 44px; }
 .hud-small-icon { width: 28px; height: 28px; }
 .control-icon { width: 48%; height: 48%; }

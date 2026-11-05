@@ -1,6 +1,6 @@
 .settings-overlay { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.88); justify-content: center; align-items: center; padding: 40px; }
 .settings-card { width: 1160px; max-width: 100%; height: 860px; max-height: 100%; background-color: rgb(18, 18, 18); border-width: 2px; border-color: rgb(100, 100, 100); }
-.settings-close { margin-left: 20px; width: 76px; height: 70px; align-items: center; justify-content: center; padding: 12px; }
+.settings-close { margin-left: 20px; width: 76px; height: 70px; align-items: center; justify-content: center; padding: 12px; border-width: 0; }
 .settings-close-icon { width: 32px; height: 32px; background-image: url("project://database/Assets/UI Toolkit/MyUIToolkits/Icons/close.svg"); }
 .settings-body { flex-direction: row; flex-grow: 1; min-height: 0; }
 .settings-tabs { width: 230px; margin-right: 32px; }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -29,6 +29,11 @@ public static class ControlSettingsUI
         help.AddToClassList("toys-caption"); page.Add(help);
         var button = new Button(()=>OpenEditor(root)) {text="Customize HUD",name="CustomizeHudButton"};
         button.AddToClassList("toys-button"); page.Add(button);
+        var sensitivity = new Slider("Look sensitivity", .1f, 3f) { name = "HudLookSensitivity", showInputField = true };
+        sensitivity.AddToClassList("settings-slider");
+        sensitivity.SetValueWithoutNotify(PlayerPrefs.GetFloat("toys.touch.sensitivity", 1f));
+        sensitivity.RegisterValueChangedCallback(evt => { PlayerPrefs.SetFloat("toys.touch.sensitivity", evt.newValue); PlayerPrefs.Save(); Changed?.Invoke(); });
+        page.Add(sensitivity);
         root.Q("HudLayoutEditor")?.RemoveFromHierarchy();
         var editor = new LayoutEditor(root.Q("SettingsOverlay").parent); editor.Overlay.userData=editor;
     }
@@ -44,7 +49,7 @@ public static class ControlSettingsUI
         public readonly VisualElement Overlay;
         readonly VisualElement canvas, inspector;
         readonly Label heading;
-        readonly Slider size, opacity, sensitivity;
+        readonly Slider size, opacity;
         readonly Dictionary<string,VisualElement> controls=new Dictionary<string,VisualElement>();
         readonly Dictionary<string,Vector2> positions=new Dictionary<string,Vector2>();
         readonly Dictionary<string,float> sizes=new Dictionary<string,float>(), opacities=new Dictionary<string,float>();
@@ -97,7 +102,6 @@ public static class ControlSettingsUI
             heading=new Label("Select a control"); heading.AddToClassList("toys-heading"); inspector.Add(heading);
             size=Slider(inspector,"Size %",65,150,"HudControlSize");
             opacity=Slider(inspector,"Opacity %",25,100,"HudControlOpacity");
-            sensitivity=Slider(inspector,"Look sensitivity",.1f,3,"HudLookSensitivity");
             size.RegisterValueChangedCallback(evt=>{if(selected!=null){sizes[selected]=Mathf.Clamp(evt.newValue,65,150)/100;Layout();}});
             opacity.RegisterValueChangedCallback(evt=>{if(selected!=null){opacities[selected]=Mathf.Clamp(evt.newValue,25,100)/100;Layout();}});
             Button(inspector,"Hide panel",()=>inspector.AddToClassList("toys-hidden"),"HideHudInspector");
@@ -110,7 +114,6 @@ public static class ControlSettingsUI
         public void Open()
         {
             foreach(string name in Names){positions[name]=Position(name);sizes[name]=Get(name,"size",1);opacities[name]=Get(name,"opacity",1);}
-            sensitivity.SetValueWithoutNotify(PlayerPrefs.GetFloat("toys.touch.sensitivity",1));
             selected=null; inspector.AddToClassList("toys-hidden"); Overlay.RemoveFromClassList("toys-hidden"); Overlay.BringToFront(); Layout();
         }
         public void Close(){EndDrag();Overlay.AddToClassList("toys-hidden");}
@@ -133,12 +136,12 @@ public static class ControlSettingsUI
                 c.EnableInClassList("layout-selected",selected==name);
             }
         }
-        void Reset(){EndDrag();for(int i=0;i<Names.Length;i++){positions[Names[i]]=Defaults[i];sizes[Names[i]]=opacities[Names[i]]=1;}sensitivity.SetValueWithoutNotify(1);if(selected!=null)Select(selected);else Layout();}
+        void Reset(){EndDrag();for(int i=0;i<Names.Length;i++){positions[Names[i]]=Defaults[i];sizes[Names[i]]=opacities[Names[i]]=1;}if(selected!=null)Select(selected);else Layout();}
         void Save()
         {
             EndDrag();
             foreach(string name in Names){string p="toys.touch."+name+".";PlayerPrefs.SetFloat(p+"x",positions[name].x);PlayerPrefs.SetFloat(p+"y",positions[name].y);PlayerPrefs.SetFloat(p+"size",sizes[name]);PlayerPrefs.SetFloat(p+"opacity",opacities[name]);}
-            PlayerPrefs.SetFloat("toys.touch.sensitivity",sensitivity.value);PlayerPrefs.Save();Changed?.Invoke();Close();
+            PlayerPrefs.Save();Changed?.Invoke();Close();
         }
     }
 }

@@ -136,7 +136,6 @@ public sealed class LobbySettingsScreen : MonoBehaviour
             root.Q<Button>(tab + "Tab").EnableInClassList("toys-button--selected", tab == selected);
         }
         status.text = string.Empty;
-        if (selected == "Controls") ControlSettingsUI.OpenEditor(root);
         if (selected == "Friends") RefreshFriends();
     }
 
